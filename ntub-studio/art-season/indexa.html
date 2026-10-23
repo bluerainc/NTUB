@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>藝術手作工作坊｜2026 北商藝術季</title>
+<meta name="description" content="2026 北商藝術季・數位多媒體設計系藝術手作工作坊：金工、MP 造型手工皂、香氛蠟燭、滴膠造型小物。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2EFE9; --ink:#111110; --muted:#6B6964; --line:#11111022;
+  --accent:#B08A3E; --paper:#FFFFFF;
+  --metal:#D8D8D2; --soap:#F7D3E3; --candle:#F1E1C2; --resin:#CDE5EA;
+  --en:"Space Grotesk",system-ui,sans-serif;
+  --zh:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --gutter:clamp(16px,3vw,40px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--zh);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{max-width:100%;display:block}
+.en{font-family:var(--en)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px var(--gutter);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--en);font-weight:700;letter-spacing:-.02em;font-size:18px;text-decoration:none;white-space:nowrap}
+.logo sup{font-size:.55em;color:var(--accent)}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:14px}
+.nav ul a{text-decoration:none;opacity:.75}.nav ul a:hover{opacity:1}
+.bag-btn{font-family:var(--en);font-weight:500;font-size:14px;border:1px solid var(--ink);border-radius:999px;padding:8px 16px;white-space:nowrap;transition:.2s}
+.bag-btn:hover{background:var(--ink);color:var(--bg)}
+.bag-btn b{color:var(--accent)}
+@media(max-width:720px){.nav ul{display:none}}
+
+/* ---------- HERO ---------- */
+.hero{padding:clamp(16px,2vw,32px) var(--gutter) 0;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,4vw,60px);align-items:center}
+.eyebrow{font-family:var(--en);font-size:13px;letter-spacing:.08em;text-transform:uppercase;display:flex;gap:10px;align-items:center;margin-bottom:22px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+.hero h1{font-weight:900;font-size:clamp(48px,7.6vw,100px);line-height:1.1;letter-spacing:-.02em}
+.hero h1 .swap{color:#cc8500;display:inline-block;min-width:2em;font-size:.8em;line-height:1.375;vertical-align:top;transition:color .3s}
+.hero h1 .swap.out{animation:out .35s forwards}.hero h1 .swap.in{animation:in .45s}
+@keyframes out{to{opacity:0;transform:translateY(-.25em)}}
+@keyframes in{from{opacity:0;transform:translateY(.25em)}}
+.hero-side{display:flex;flex-direction:column;gap:22px}
+.hero-visual{aspect-ratio:5/4;border-radius:6px;overflow:hidden;position:relative;transition:background .5s}
+.hero-visual svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-visual .tag{position:absolute;left:14px;top:14px;font-family:var(--en);font-size:12px;background:var(--paper);padding:5px 10px;border-radius:999px}
+.hero p.lead{font-size:clamp(15px,1.3vw,17px);line-height:1.8;color:var(--muted);max-width:34em}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.hero-visual{aspect-ratio:16/11}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{margin-top:clamp(40px,6vw,80px);border-block:1px solid var(--ink);overflow:hidden;white-space:nowrap;background:var(--ink);color:var(--bg)}
+.marquee div{display:inline-block;padding:14px 0;font-family:var(--en);font-weight:500;font-size:clamp(16px,2vw,22px);animation:mq 32s linear infinite}
+.marquee span{margin:0 24px}.marquee em{font-style:normal;color:var(--accent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- SHOP GRID ---------- */
+section{padding:clamp(56px,8vw,110px) var(--gutter)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(32px,5vw,64px);font-weight:900;letter-spacing:-.03em;line-height:1}
+.sec-head h2 small{display:block;font-family:var(--en);font-size:13px;font-weight:500;letter-spacing:.08em;color:var(--muted);margin-bottom:12px;text-transform:uppercase}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:14px;border:1px solid var(--line);border-radius:999px;padding:7px 14px;transition:.2s}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.6vw,22px)}
+@media(max-width:1280px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;text-align:left;gap:12px;transition:opacity .3s}
+.card.hide{display:none}
+.card .img{aspect-ratio:4/5;border-radius:6px;position:relative;overflow:hidden}
+.card .img svg,.card .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .img svg,.card:hover .img img{transform:scale(1.06) rotate(-1.5deg)}
+.card .no{position:absolute;left:12px;top:10px;font-family:var(--en);font-weight:700;font-size:13px}
+.card .status{position:absolute;right:12px;top:10px;font-size:12px;background:var(--paper);padding:4px 10px;border-radius:999px}
+.card .status.low{background:var(--accent);color:#fff}
+.card .view{position:absolute;left:12px;right:12px;bottom:12px;background:var(--ink);color:var(--bg);font-size:14px;padding:12px;border-radius:4px;display:flex;justify-content:space-between;
+  transform:translateY(130%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.card:hover .view,.card:focus-visible .view{transform:none}
+@media(hover:none){.card .view{transform:none;position:static;margin:0}}
+.meta{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.meta h3{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.meta .price{font-family:var(--en);font-weight:500;white-space:nowrap}
+.sub{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);gap:10px}
+.sub .en{text-transform:uppercase;letter-spacing:.04em}
+
+/* ---------- INFO ---------- */
+.info{border-top:1px solid var(--ink)}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.info-grid div{padding:22px 18px 22px 0;border-bottom:1px solid var(--line)}
+.info-grid dt{font-family:var(--en);font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.info-grid dd{font-size:18px;font-weight:700;line-height:1.5}
+@media(max-width:860px){.info-grid{grid-template-columns:repeat(2,1fr)}}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px;counter-reset:s}
+.steps li{list-style:none;border-top:2px solid var(--ink);padding-top:16px;line-height:1.7;color:var(--muted);font-size:15px}
+.steps li b{display:block;color:var(--ink);font-size:18px;margin-bottom:6px}
+.steps li::before{counter-increment:s;content:"0" counter(s);font-family:var(--en);font-weight:700;color:var(--accent);display:block;margin-bottom:6px}
+@media(max-width:720px){.steps{grid-template-columns:1fr}}
+
+/* ---------- FAQ ---------- */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::after{content:"+";font-family:var(--en);font-size:22px;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);line-height:1.8;margin-top:10px;max-width:46em}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:var(--bg);padding:clamp(56px,8vw,100px) var(--gutter) 28px}
+footer .big{font-family:var(--en);font-weight:700;font-size:clamp(40px,12vw,200px);letter-spacing:-.05em;line-height:.85}
+footer .big span{color:var(--accent)}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:40px;font-size:13px;opacity:.7}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:999px;margin-top:32px;transition:.2s}
+.cta:hover{transform:translateY(-2px)}
+
+/* ---------- DRAWERS ---------- */
+.scrim{position:fixed;inset:0;background:#0006;opacity:0;pointer-events:none;transition:.3s;z-index:50}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(560px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+  display:flex;flex-direction:column;overflow:hidden}
+.drawer.on{transform:none}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:16px var(--gutter);border-bottom:1px solid var(--line);font-family:var(--en);font-weight:500}
+.drawer .body{overflow:auto;flex:1}
+.close{font-size:26px;line-height:1;width:36px;height:36px}
+.d-img{aspect-ratio:16/10;position:relative}
+.d-img svg,.d-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.d-content{padding:24px var(--gutter) 32px}
+.d-content h2{font-size:clamp(30px,5vw,44px);font-weight:900;letter-spacing:-.03em;line-height:1.05}
+.d-content .en-name{font-family:var(--en);color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:13px;margin:8px 0 18px}
+.d-content p{line-height:1.85;color:#3a3936}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0}
+.facts div{background:var(--bg);padding:12px}
+.facts span{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+.facts b{font-family:var(--en);font-size:17px}
+.d-content h4{font-size:14px;margin:22px 0 10px;display:flex;gap:8px;align-items:center}
+.d-content h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.d-content ul{padding-left:1.1em;line-height:1.9;color:#3a3936}
+.drawer footer.act{background:var(--bg);color:var(--ink);padding:14px var(--gutter);border-top:1px solid var(--line);display:flex;gap:10px}
+.btn{flex:1;padding:15px;border-radius:999px;font-weight:700;text-align:center;text-decoration:none;transition:.2s}
+.btn.pri{background:var(--ink);color:var(--bg)}.btn.pri:hover{background:var(--accent)}
+.btn.pri.added{background:var(--accent)}
+.btn.sec{border:1px solid var(--ink)}
+.bag-list{padding:12px var(--gutter)}
+.bag-item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.bag-item .thumb{aspect-ratio:1;border-radius:4px;position:relative;overflow:hidden}
+.bag-item .thumb svg,.bag-item .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bag-item small{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+.bag-item .rank{font-family:var(--en);font-weight:700;color:var(--accent);font-size:13px}
+.bag-item .rm{font-size:13px;text-decoration:underline;color:var(--muted)}
+.bag-empty{padding:60px var(--gutter);text-align:center;color:var(--muted);line-height:1.8}
+.bag-note{padding:0 var(--gutter) 20px;font-size:13px;color:var(--muted);line-height:1.7}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,150%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:999px;font-size:14px;z-index:70;opacity:0;visibility:hidden;transition:.35s}
+.toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+  ✏️ 內容設定區：要改文字、價格、名額、日期、報名連結，只改下面 CONFIG 就好
+  圖片：在課程的 image 填入圖片路徑（例如 "images/metal.jpg"），
+        留空 "" 則使用內建插畫。
+====================================================================== -->
+<script>
+const CONFIG = {
+  event: {
+    title: "2026 北商藝術季",
+    theme: "轉化重生：革新啟藝",
+    host: "國立臺北商業大學 數位多媒體設計系",
+    date: "依問卷結果公告",
+    time: "每場約 3 小時（時段依問卷安排）",
+    place: "桃園校區（教室待定）",
+    audience: "數媒系同學保留10位，數媒系學會成員10位，外系同學10位",
+    voteUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfZcP9Y31x2ms-IeqvHDByUpq5tvJqSflgSguk8SApufVBHvQ/viewform",   // 活動意願調查表單
+    voteEntry: ""                // （選填）表單預填欄位代碼，例如 "entry.123456789"，填了會自動帶入所選課程
+  },
+  courses: [
+    // ── 目前開放票選的課程（順序與問卷第 1 題相同）──
+    {
+      id: "aroma", no: "01", name: "擴香石", hero: "擴香石", en: "Aroma Stone",
+      cat: "香氛", color: "#E4E6DC", art: "soap", heroColor: "#7a9e7e", image: "images/aroma Stone.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "用石膏粉調色、入模，做出屬於自己的造型擴香石，再滴上喜歡的精油，讓書桌和房間都有自己的味道。",
+      take: ["造型擴香石 1 個", "包裝袋與標籤"],
+      flow: ["認識石膏與模具", "配色與比例調配", "攪拌、入模、脫泡", "脫模、修邊與滴香"],
+      notes: ["攪拌石膏粉時請戴口罩", "作品需靜置約 30–40 分鐘脫模"]
+    },
+    {
+      id: "soap", no: "02", name: "造型香皂", hero: "造型香皂", en: "Melt & Pour Soap",
+      cat: "香氛", color: "var(--soap)", art: "soap", heroColor: "#38b5cf", image: "images/soap.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "使用 MP（Melt & Pour）皂基，免接觸強鹼，融化、調色、入模就能完成。用分層、嵌入與渲染，做出一塊能洗手也能欣賞的小作品。",
+      take: ["造型香皂 1 顆", "精油香氣自選", "包裝紙與標籤"],
+      flow: ["皂基與色粉介紹", "配色與造型構想", "融化、調色、分層入模", "脫模與包裝設計"],
+      notes: ["皂基加熱後溫度高，請小心操作", "作品需靜置約 30 分鐘脫模"]
+    },
+    {
+      id: "jelly", no: "03", name: "果凍蠟", hero: "果凍蠟", en: "Jelly Wax",
+      cat: "香氛", color: "#F6DCE3", art: "candle", heroColor: "#e0708a", image: "images/jelly wax.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "透明 Q 彈的果凍蠟，像一杯凝固的海洋或汽水。加入蠟製小配件、貝殼與色彩，做出點亮時會透光的造型蠟燭。",
+      take: ["果凍蠟燭 1 杯", "造型小配件", "標籤卡"],
+      flow: ["果凍蠟與容器介紹", "配色與場景構想", "融蠟、調色、入杯", "擺放配件與凝固"],
+      notes: ["融蠟溫度高，請依講師指示操作", "蠟燭需靜置約 1 小時凝固"]
+    },
+    {
+      id: "embBag", no: "04", name: "刺繡（收納包、縫紉）", hero: "刺繡收納包", en: "Embroidered Bag",
+      cat: "織品", color: "#EFE3D3", art: "metal", heroColor: "#c0622f", image: "images/embroidered Bag.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "從穿針、基礎繡法到手縫組合，在布面上繡出自己設計的圖案，再縫成一個實用的收納小包。慢慢來，一針一線都是你的。",
+      take: ["手縫刺繡收納包 1 個", "繡線與針組", "個人圖案草稿"],
+      flow: ["認識布料、繡線與工具", "圖案設計與轉印", "基礎繡法與刺繡", "縫合組裝收納包"],
+      notes: ["使用針具請小心", "零基礎也能完成，講師會提供圖稿"]
+    },
+    {
+      id: "embKey", no: "05", name: "刺繡（吊飾、電腦刺繡）", hero: "刺繡吊飾", en: "Embroidery Keychain",
+      cat: "織品", color: "#DCE3EF", art: "resin", heroColor: "#4a6fa5", image: "images/embroiderykeychain.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "把你設計的小圖案交給電腦刺繡機，一針一線自動繡出來，再修邊、加上五金，做成專屬吊飾。數位設計 × 手作的完美結合。",
+      take: ["電腦刺繡吊飾 1–2 個", "五金配件"],
+      flow: ["認識電腦刺繡機與檔案", "繪製或挑選圖案", "上機刺繡", "修剪、封邊與組裝五金"],
+      notes: ["機器請依講師指示操作", "圖案以簡單色塊效果最好"]
+    },
+
+    // ── 暫不開放的課程：想重新上架，把 hidden: true 改成 hidden: false ──
+    {
+      id: "metal", no: "06", name: "金工", en: "Metalsmithing", hidden: true,
+      cat: "金屬", color: "var(--metal)", art: "metal", heroColor: "#cc8500", image: "images/metalwork.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "把一片黃銅片，敲打、鋸切、打磨成專屬於你的戒指或墜飾。在一次次敲擊裡，感受材料從冷硬到有溫度的轉化。",
+      take: ["黃銅戒指或墜飾 1 件", "個人字母或紋樣敲印", "收納小布袋"],
+      flow: ["認識工具與安全須知", "設計草圖與尺寸量測", "鋸切、敲打、塑形", "拋光與完成"],
+      notes: ["請穿著包鞋，長髮需綁起", "課程使用鋸弓與銼刀，請依講師指示操作"]
+    },
+    {
+      id: "candle", no: "07", name: "香氛蠟燭", en: "Scented Candle", hidden: true,
+      cat: "香氛", color: "var(--candle)", art: "candle", heroColor: "#9473bd", image: "images/candle.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "從調香開始，學習前、中、後調的搭配，再用大豆蠟與乾燥花完成一盞屬於自己的香氛蠟燭。",
+      take: ["香氛蠟燭 1 杯（約 200ml）", "個人調香配方卡", "乾燥花裝飾"],
+      flow: ["香調入門與試香", "調配個人香氛", "融蠟、入杯、固定燭芯", "表面裝飾與標籤設計"],
+      notes: ["對特定香氣敏感者請事先告知", "蠟燭需約 2 小時完全凝固"]
+    },
+    {
+      id: "resin", no: "08", name: "滴膠造型小物", en: "Resin Objects", hidden: true,
+      cat: "造型", color: "var(--resin)", art: "resin", heroColor: "#b586a8", image: "images/resin craft.png",
+      price: 0, seats: 30, left: 30, duration: "3 hr",
+      intro: "把乾燥花、亮片與你的小收藏封存在透明滴膠裡，做成鑰匙圈、耳環或杯墊。像把一個瞬間凝固下來。",
+      take: ["滴膠吊飾或鑰匙圈 2 件", "五金配件", "UV 燈照射固化體驗"],
+      flow: ["模具與素材挑選", "構圖與配色", "調膠、入模、UV 固化", "脫模、修邊與組裝五金"],
+      notes: ["現場提供手套，全程保持通風", "請勿直視 UV 燈"]
+    }
+  ],
+  faq: [
+    ["需要有手作經驗嗎？", "完全不需要。每門課程都從零開始，講師會一步步帶領，重點是動手與享受過程。"],
+    ["要付材料費嗎？", "不用！材料由數媒系提供、系學會協辦，參加完全免費。"],
+    ["填了問卷就等於報名了嗎？", "還不是喔。這是活動意願調查，結果將作為開課項目、時段與名額的依據；正式報名方式會另行公告。"],
+    ["可以投多門課程嗎？", "問卷第 1 題請選出你最想參加的一門；其他想上的工作坊，可以寫在最後一題告訴我們。"],
+    ["作品可以當天帶走嗎？", "請先留下，等待 11 月藝術季展覽拍照後即可領回。部分作品（造型香皂、擴香石、果凍蠟）需短暫靜置，建議預留課後 15 分鐘。"]
+  ]
+};
+</script>
+
+<nav class="nav" aria-label="主選單">
+  <a class="logo" href="#top">NTUB ART SEASON<sup>®</sup>26</a>
+  <ul>
+    <li><a href="#courses">課程</a></li>
+    <li><a href="#info">活動資訊</a></li>
+    <li><a href="#faq">常見問題</a></li>
+  </ul>
+  <button class="bag-btn" id="bagBtn" aria-haspopup="dialog">我的一票 (<b id="bagCount">0</b>)</button>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow"><i></i><span id="evTitle"></span> — 課程票選中 VOTE NOW</p>
+    <h1>動手做<br><span class="swap" id="swap">金工</span><br>轉化重生</h1>
+  </div>
+  <div class="hero-side">
+    <div class="hero-visual" id="heroVisual"><span class="tag en" id="heroTag">01 / 04</span></div>
+    <p class="lead" id="heroLead"></p>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div id="marquee"></div></div>
+
+<section id="courses">
+  <div class="sec-head">
+    <h2><small id="courseCount">Workshops</small>選課程，<br>創作手工藝術作品</h2>
+    <div class="filters" role="group" aria-label="篩選課程" id="filters"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="info" id="info">
+  <div class="sec-head"><h2><small>Information</small>活動資訊</h2></div>
+  <dl class="info-grid" id="infoGrid"></dl>
+  <ol class="steps">
+    <li><b>逛逛課程</b>點開每一門工作坊，看看材料、流程與可以帶走的作品。全部免費，材料由系上提供！</li>
+    <li><b>選出一門</b>在最想上的課程按「投這門一票」，每人限選一門。</li>
+    <li><b>前往投票</b>點「前往投票」填寫意願調查，第 1 題選同一門課並送出。結果將作為開課、時段與名額的依據。</li>
+  </ol>
+</section>
+
+<section id="faq">
+  <div class="sec-head"><h2><small>FAQ</small>常見問題</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<footer>
+  <div class="big">MAKE<span>.</span><br>TRANSFORM<span>.</span></div>
+  <a class="cta" id="footCta" href="#" target="_blank" rel="noopener">前往投票 →</a>
+  <div class="row"><span id="footHost"></span><span id="footTheme"></span></div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="detail" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+  <header><span class="en" id="dNo"></span><button class="close" data-close aria-label="關閉">×</button></header>
+  <div class="body">
+    <div class="d-img" id="dImg"></div>
+    <div class="d-content">
+      <h2 id="dTitle"></h2><div class="en-name" id="dEn"></div>
+      <p id="dIntro"></p>
+      <div class="facts" id="dFacts"></div>
+      <h4>你會帶走</h4><ul id="dTake"></ul>
+      <h4>課程流程</h4><ul id="dFlow"></ul>
+      <h4>注意事項</h4><ul id="dNotes"></ul>
+    </div>
+  </div>
+  <footer class="act"><button class="btn pri" id="dAdd">投這門一票</button></footer>
+</aside>
+
+<aside class="drawer" id="bag" role="dialog" aria-modal="true" aria-label="我的一票">
+  <header><span>我的一票</span><button class="close" data-close aria-label="關閉">×</button></header>
+  <div class="body"><div id="bagList"></div></div>
+  <footer class="act"><a class="btn pri" id="bagGo" href="#" target="_blank" rel="noopener">前往投票 →</a></footer>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ---------- 內建插畫（不需圖片檔） ---------- */
+const ART = {
+  metal:`<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><rect width="400" height="500" fill="#D8D8D2"/>
+    <g stroke="#111" stroke-width="2" fill="none" opacity=".18">${Array.from({length:14},(_,i)=>`<line x1="0" y1="${i*38}" x2="400" y2="${i*38-60}"/>`).join("")}</g>
+    <circle cx="200" cy="270" r="96" fill="none" stroke="#B08A3E" stroke-width="30"/>
+    <circle cx="200" cy="270" r="96" fill="none" stroke="#E6C77A" stroke-width="8" stroke-dasharray="40 30"/>
+    <path d="M200 150 l22 26 -22 26 -22 -26z" fill="#B08A3E"/>
+    <rect x="262" y="60" width="18" height="120" rx="3" fill="#111" transform="rotate(35 271 120)"/>
+    <rect x="236" y="48" width="70" height="30" rx="4" fill="#111" transform="rotate(35 271 63)"/></svg>`,
+  soap:`<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><rect width="400" height="500" fill="#F7D3E3"/>
+    ${[[80,90,14],[320,120,22],[300,420,16],[70,400,26],[340,300,10],[120,200,8]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#fff" stroke-width="3"/>`).join("")}
+    <rect x="95" y="190" width="210" height="150" rx="36" fill="#fff"/>
+    <rect x="95" y="190" width="210" height="72" rx="36" fill="#B08A3E" opacity=".85"/>
+    <rect x="95" y="240" width="210" height="30" fill="#F29BC4"/>
+    <g transform="translate(200 300)" fill="#B08A3E">${[0,72,144,216,288].map(a=>`<ellipse rx="10" ry="18" cy="-16" transform="rotate(${a})"/>`).join("")}<circle r="8" fill="#FFD84D"/></g></svg>`,
+  candle:`<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><rect width="400" height="500" fill="#F1E1C2"/>
+    <circle cx="200" cy="170" r="120" fill="#FFF3D6"/>
+    <path d="M200 110 C225 145 222 175 200 190 C178 175 175 145 200 110Z" fill="#B08A3E"/>
+    <path d="M200 140 C210 158 209 172 200 180 C191 172 190 158 200 140Z" fill="#FFD84D"/>
+    <line x1="200" y1="190" x2="200" y2="226" stroke="#111" stroke-width="4"/>
+    <path d="M118 220 h164 v150 a24 24 0 0 1 -24 24 h-116 a24 24 0 0 1 -24 -24z" fill="#fff" opacity=".7" stroke="#111" stroke-width="3"/>
+    <rect x="121" y="226" width="158" height="60" fill="#FBEFD9"/>
+    <rect x="150" y="310" width="100" height="44" rx="4" fill="#111"/><text x="200" y="338" text-anchor="middle" font-family="Space Grotesk" font-size="15" fill="#fff" letter-spacing="2">NO.03</text></svg>`,
+  resin:`<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><rect width="400" height="500" fill="#CDE5EA"/>
+    <circle cx="200" cy="120" r="14" fill="none" stroke="#111" stroke-width="5"/><line x1="200" y1="134" x2="200" y2="160" stroke="#111" stroke-width="4"/>
+    <path d="M200 160 C275 250 290 300 290 335 A90 90 0 0 1 110 335 C110 300 125 250 200 160Z" fill="#fff" opacity=".55" stroke="#111" stroke-width="3"/>
+    ${[[170,320,"#B08A3E"],[225,300,"#FFD84D"],[200,360,"#B08A3E"],[240,350,"#6BB7C4"],[160,370,"#FFD84D"],[210,270,"#6BB7C4"]].map(([x,y,c],i)=>`<rect x="${x}" y="${y}" width="${10+i%3*4}" height="${10+i%3*4}" fill="${c}" transform="rotate(${i*23} ${x} ${y})"/>`).join("")}
+    <g transform="translate(195 330)" fill="#B08A3E" opacity=".9">${[0,90,180,270].map(a=>`<ellipse rx="7" ry="14" cy="-12" transform="rotate(${a})"/>`).join("")}</g>
+    <ellipse cx="160" cy="250" rx="10" ry="26" fill="#fff" opacity=".8" transform="rotate(20 160 250)"/></svg>`
+};
+const visual = c => c.image ? `<img src="${c.image}" alt="${c.name}作品示意" loading="lazy">` : ART[c.art];
+
+/* ---------- 渲染 ---------- */
+const $ = s => document.querySelector(s);
+const E = CONFIG.event, C = CONFIG.courses.filter(c => !c.hidden);
+const fee = c => c.price ? `NT$${c.price}` : "免費";
+let bag = [];
+try{ bag = JSON.parse(localStorage.getItem("ntub-ws-bag")||"[]").filter(id=>C.some(c=>c.id===id)).slice(0,1); }catch(e){}
+const save = () => { try{ localStorage.setItem("ntub-ws-bag", JSON.stringify(bag)); }catch(e){} };
+
+$("#evTitle").textContent = E.title;
+$("#heroLead").textContent = `${E.theme}。${E.host}邀請你放下螢幕，用雙手把材料轉化成作品：${C.map(c=>c.hero||c.name).join("、")}。${C.length} 門免費工作坊，材料由系上提供，選出你最想上的一門，帶一件作品回家。`;
+$("#courseCount").textContent = `Workshops — ${String(C.length).padStart(2,"0")} Courses`;
+$("#footHost").textContent = E.host;
+$("#footTheme").textContent = `${E.title}｜${E.theme}`;
+const voteLink = () => {
+  if(!E.voteEntry || !bag.length || E.voteUrl==="#") return E.voteUrl;
+  const c = C.find(x=>x.id===bag[0]);
+  return E.voteUrl + (E.voteUrl.includes("?")?"&":"?") + "usp=pp_url&" + E.voteEntry + "=" + encodeURIComponent(c.name);
+};
+const syncLinks = () => [$("#footCta"), $("#bagGo")].forEach(a => a.href = voteLink());
+syncLinks();
+
+$("#marquee").innerHTML = Array(2).fill(C.map(c=>`<span>${c.name}</span><span class="en">${c.en}</span><em>✺</em>`).join("")+`<span>${E.theme}</span><em>✺</em>`).join("");
+
+const cats = ["全部", ...new Set(C.map(c=>c.cat))];
+$("#filters").innerHTML = cats.map((c,i)=>`<button class="chip" aria-pressed="${i===0}" data-cat="${c}">${c}</button>`).join("");
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if(!b) return;
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  document.querySelectorAll(".card").forEach(card => card.classList.toggle("hide", b.dataset.cat!=="全部" && card.dataset.cat!==b.dataset.cat));
+});
+
+$("#grid").innerHTML = C.map(c => {
+  const low = c.left <= Math.ceil(c.seats*0.4);
+  return `<button class="card" data-id="${c.id}" data-cat="${c.cat}" aria-label="查看 ${c.name} 課程">
+    <div class="img" style="background:${c.color}">${visual(c)}
+      <span class="no">${c.no}</span>
+      <span class="status ${low?"low":""}">${c.left<=0?"已額滿":low?`剩 ${c.left} 位`:`名額 ${c.seats}`}</span>
+      <span class="view"><span>查看課程</span><span>→</span></span>
+    </div>
+    <div class="meta"><h3>${c.name}</h3><span class="price">${fee(c)}</span></div>
+    <div class="sub"><span class="en">${c.en}</span><span>${c.cat}・${c.duration}</span></div>
+  </button>`;
+}).join("");
+
+$("#infoGrid").innerHTML = [["Date 日期",E.date],["Time 時間",E.time],["Venue 地點",E.place],["For 對象",E.audience]]
+  .map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+$("#faqList").innerHTML = CONFIG.faq.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join("");
+
+/* ---------- Hero 輪播 ---------- */
+let hi = 0;
+function hero(i){
+  const c = C[i];
+  $("#heroVisual").style.background = c.color;
+  $("#heroVisual").innerHTML = visual(c) + `<span class="tag en">${c.no} / 0${C.length} — ${c.en}</span>`;
+  const s = $("#swap"); s.classList.remove("in"); s.classList.add("out");
+  setTimeout(()=>{ s.textContent = c.hero || c.name; s.style.color = c.heroColor || ""; s.classList.remove("out"); s.classList.add("in"); }, 380);
+}
+hero(0);
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>hero(hi=(hi+1)%C.length), 2800);
+
+/* ---------- 抽屜 ---------- */
+let current = null, lastFocus = null;
+function open(el){ lastFocus=document.activeElement; $("#scrim").classList.add("on"); el.classList.add("on"); document.body.style.overflow="hidden"; el.querySelector(".close").focus(); }
+function closeAll(){ document.querySelectorAll(".drawer").forEach(d=>d.classList.remove("on")); $("#scrim").classList.remove("on"); document.body.style.overflow=""; lastFocus && lastFocus.focus(); }
+$("#scrim").onclick = closeAll;
+document.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeAll);
+addEventListener("keydown", e => e.key==="Escape" && closeAll());
+
+function showDetail(id){
+  const c = C.find(x=>x.id===id); current = c;
+  $("#dNo").textContent = `${c.no} / 0${C.length} — ${c.cat}`;
+  $("#dImg").style.background = c.color; $("#dImg").innerHTML = visual(c);
+  $("#dTitle").textContent = c.name; $("#dEn").textContent = c.en;
+  $("#dIntro").textContent = c.intro;
+  $("#dFacts").innerHTML = [["材料費",fee(c)],["時長",c.duration],["名額",`${c.left}/${c.seats}`]].map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join("");
+  ["take","flow","notes"].forEach(k => $("#d"+k[0].toUpperCase()+k.slice(1)).innerHTML = c[k].map(x=>`<li>${x}</li>`).join(""));
+  syncAdd(); open($("#detail"));
+}
+function syncAdd(){
+  const b = $("#dAdd"), inBag = bag.includes(current.id);
+  b.textContent = inBag ? "✓ 這是我的一票（點此取消）" : bag.length ? "改投這一門" : "投這門一票";
+  b.classList.toggle("added", inBag);
+}
+$("#grid").addEventListener("click", e => { const c = e.target.closest(".card"); c && showDetail(c.dataset.id); });
+$("#dAdd").onclick = () => {
+  const id = current.id;
+  if(bag.includes(id)){ bag = []; toast("已取消選擇"); }
+  else { toast(bag.length ? `已改投：${current.name}` : `已選擇：${current.name}，記得前往投票！`); bag = [id]; }
+  save(); syncAdd(); renderBag(); syncLinks();
+};
+
+function renderBag(){
+  $("#bagCount").textContent = bag.length;
+  const list = $("#bagList");
+  if(!bag.length){ list.innerHTML = `<div class="bag-empty">還沒選出你的一票喔。<br>先逛逛各門工作坊，挑一門最想上的吧！</div>`; $("#bagGo").style.display="none"; return; }
+  $("#bagGo").style.display="";
+  list.innerHTML = `<div class="bag-list">${bag.map((id,i)=>{ const c=C.find(x=>x.id===id);
+    return `<div class="bag-item"><div class="thumb" style="background:${c.color}">${visual(c)}</div>
+      <div><span class="rank en">我的一票</span><br><b>${c.name}</b><small>${fee(c)}・${c.duration}</small></div>
+      <button class="rm" data-rm="${id}">移除</button></div>`;}).join("")}</div>
+    <p class="bag-note">每人限投一票。點「前往投票」後，請在問卷第 1 題選擇同一門課程並送出，才算完成投票喔！</p>`;
+}
+$("#bagList").addEventListener("click", e => { const id = e.target.dataset.rm; if(!id) return; bag = bag.filter(x=>x!==id); save(); renderBag(); syncLinks(); });
+$("#bagBtn").onclick = () => { renderBag(); open($("#bag")); };
+renderBag();
+
+let tt; function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("on"),2200); }
+</script>
+</body>
+</html>
