@@ -31,6 +31,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* top utility bar (like letscamp) */
 .util{background:#2E1A07;color:#F5E6CC;font-size:14px;text-align:center;padding:8px var(--g);font-weight:500}
 .util a{font-weight:700;color:#FCC11E}
+.util b{color:#FCC11E}
+.notice{margin:22px 0 4px;max-width:34em;padding:16px 18px;border-radius:12px;background:rgba(46,26,7,.72);border:1px solid #FCC11E88;color:#FFF8EE;font-size:15px;line-height:1.75;display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(4px)}
+.notice b{color:#FCC11E;font-size:14px;letter-spacing:.08em}
+.notice strong{color:#FFD866}
 
 /* nav */
 .nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--night) 92%,transparent);backdrop-filter:blur(10px);color:#fff}
@@ -199,7 +203,7 @@ const EVENT = {
 };
 </script>
 
-<div class="util">🕯️ 2026 北商藝術季｜數位多媒體設計系 手作工作坊 — <a href="#signup">名額有限，立即報名 →</a></div>
+<div class="util">🕯️ 行前提醒：11/2（一）<b>16:10</b> 到 A439 教室報到｜可攜帶 2～4 cm 小物封進蠟燭 — <a href="#top">看詳情 →</a></div>
 
 <nav class="nav" aria-label="主選單">
   <div class="wrap">
@@ -223,6 +227,11 @@ const EVENT = {
       <h1><span class="glow">微光</span>記憶</h1>
       <p class="sub">創意果凍蠟燭手作坊</p>
       <p class="lead">用透明的果凍蠟，把一片海、一盆多肉或一份甜點，輕輕封存在小小的玻璃杯裡；點亮的那一刻，微光便成了記憶。三小時，帶走一盞專屬於你的微景觀蠟燭。</p>
+      <div class="notice" role="note">
+        <b>📌 行前提醒</b>
+        <p><strong>11/2（一）下午 4:10</strong> 請到 <strong>弘毅樓 A439 教室</strong>報到，4:30 準時開始。</p>
+        <p>可以帶一個 <strong>約 2～4 cm 的小物</strong>（小玩具、小公仔、小飾品等）封進蠟燭裡，做成只屬於你的作品。建議選陶瓷、玻璃、金屬、石頭、貝殼等耐熱材質，避免遇熱會變形的軟塑膠或紙製品。</p>
+      </div>
       <div class="actions">
         <a class="btn pri js-form" href="#">立即報名 →</a>
         <a class="btn ghost" href="#themes">看看可以做什麼</a>
@@ -236,7 +245,7 @@ const EVENT = {
   <div class="wrap">
     <div class="fact"><small>Date</small><b>11 月 2 日（一）</b><span>2026</span></div>
     <div class="fact"><small>Time</small><b>16:30 – 19:30</b><span>約 3 小時</span></div>
-    <div class="fact"><small>Place</small><b id="roomTxt">A439 教室</b><span>請準時入場</span></div>
+    <div class="fact"><small>Place</small><b id="roomTxt">A439 教室</b><span>16:10 報到</span></div>
     <div class="fact"><small>Seats</small><b>限額 30 名</b><span>本系 20・外系 10</span></div>
   </div>
 </div>
@@ -379,7 +388,7 @@ const EVENT = {
     <div class="center reveal"><span class="eyebrow">FAQ</span><h2>常見問題</h2></div>
     <div class="faq">
       <details><summary>沒有手作經驗也可以參加嗎？</summary><p>當然可以！業師會從材料介紹開始一步步示範，重點是享受創作、發揮想像力。</p></details>
-      <details><summary>需要自備材料或工具嗎？</summary><p>不需要，果凍蠟、彩色蠟材、容器與造型裝飾素材現場都會準備好。建議穿著輕便、可弄髒的衣服。</p></details>
+      <details><summary>需要自備材料或工具嗎？</summary><p>不需要，果凍蠟、彩色蠟材、容器與造型裝飾素材現場都會準備好。如果想讓作品更有個人味，可以帶一個約 2～4 cm 的耐熱小物（小玩具、小飾品等）封進蠟燭裡。建議穿著輕便、可弄髒的衣服。</p></details>
       <details><summary>作品當天可以帶走嗎？</summary><p>作品會先參與 11 月藝術季展出，展覽結束拍照記錄後即可領回。</p></details>
       <details><summary>報名後一定會錄取嗎？</summary><p>本系 20 名（其中 10 名保留給系學會成員）、外系 10 名，名額會視報名狀況流用調整，錄取結果將另行通知。</p></details>
       <details><summary>操作果凍蠟安全嗎？</summary><p>融蠟時溫度較高，現場會說明安全注意事項，請依業師指示操作，長髮請綁起。</p></details>
