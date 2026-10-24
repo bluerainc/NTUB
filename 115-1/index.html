@@ -201,7 +201,7 @@ a.corner:hover{color:var(--hot)}
 .fit{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
 .fit b{color:var(--ink)}
 
-.banner{margin:0;border-radius:10px;overflow:hidden;aspect-ratio:1920/802;max-width:100%;background:#05060a}
+.banner{margin:0;border-radius:10px;overflow:hidden;aspect-ratio:1920/813;max-width:100%;background:#05060a}
 .banner img{width:100%;height:100%;object-fit:cover;display:block}
 /* slots */
 .slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
@@ -258,7 +258,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
   <div class="floor" id="floor"></div>
   <div class="ring-view"><div class="ring" id="ring">
     <a class="card" href="#cat-visit" aria-label="校外參訪">
-      <div class="face"><img alt="同學於祥儀企業門口舉著「職場體驗」布條合影" src="img/visit.jpg"></div>
+      <div class="face"><img alt="同學於祥儀機器人夢工廠門口舉著「職場體驗」布條合影" src="img/visit.jpg"></div>
       <div class="label"><span class="plus">+</span><strong>校外參訪</strong><small>FIELD TRIP</small></div>
     </a>
     <a class="card" href="#cat-talk" aria-label="校內演講">
@@ -320,10 +320,10 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
     <h2 id="catsh">活動類別與花絮</h2>
     <div class="cats">
       <article class="catblock" id="cat-visit">
-        <figure><img alt="同學於祥儀企業門口舉著「職場體驗」布條合影" src="img/visit.jpg"></figure>
+        <figure><img alt="同學於祥儀機器人夢工廠門口舉著「職場體驗」布條合影" src="img/visit.jpg"></figure>
         <div class="cb"><span class="eyebrow">Field Trip</span><h3>校外參訪</h3>
           <p>走進企業與工作現場，看設計與製作在真實產業裡怎麼運作。</p>
-          <p class="cap">花絮：祥儀企業職場體驗（Young 桃下一步）</p></div>
+          <p class="cap">花絮：祥儀機器人夢工廠與安東青創-斐闊&amp;邁思達數位科技職場體驗（Young 桃下一步）</p></div>
       </article>
       <article class="catblock" id="cat-talk">
         <figure><img alt="業師於電腦教室向同學演講" src="img/talk.jpg"></figure>
@@ -490,8 +490,14 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
    photos: 活動結束後放照片 [{src:"img/xxx.jpg", cap:"說明"}]
    ============================================================ */
 var EVENTS=[
-  {id:"visit-xiangyi", cat:"visit", title:"祥儀企業 職場體驗", sub:"Young 桃下一步 · 職場體驗參訪", dateLabel:"115-1", status:"done",
-   photos:[{src:"img/visit.jpg", cap:"同學於祥儀企業門口合影"}]},
+  {id:"visit-xiangyi", cat:"visit", short:"職場體驗", title:"祥儀機器人夢工廠與安東青創-斐闊&邁思達數位科技職場體驗", sub:"Young 桃下一步 · 職場體驗參訪", date:"2026-10-15", status:"done",
+   photos:[{src:"img/visit-1015/v01.jpg", cap:"祥儀機器人夢工廠門口大合照"},
+           {src:"img/visit-1015/v02.jpg", cap:"機器人夢工廠展區合影"},
+           {src:"img/visit-1015/v03.jpg", cap:"動手體驗互動裝置"},
+           {src:"img/visit-1015/v04.jpg", cap:"參觀展區"},
+           {src:"img/visit-1015/v05.jpg", cap:"入場導覽"},
+           {src:"img/visit-1015/v06.jpg", cap:"企業分享與交流"},
+           {src:"img/visit-1015/v07.jpg", cap:"職場體驗交流合影"}]},
   {id:"talk-ethan", cat:"talk", title:"業師演講｜Ethan 李翌誠", sub:"日本動畫產業經驗分享", dateLabel:"115-1", status:"done",
    photos:[{src:"img/talk.jpg", cap:"業師於電腦教室分享"}]},
   {id:"career-winking", cat:"career", short:"唯晶科技", title:"唯晶科技 孫雨塵 營運總監", sub:"遊戲產業經營、人才與職涯方向諮詢 · 每人約 10 分鐘",
