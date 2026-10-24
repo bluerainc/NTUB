@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="國立臺北商業大學 數位多媒體設計系 115-1 學期系上活動總覽：校外參訪、校內演講、業師職涯面談、設計工坊、校內外展演與活動照片。">
+<meta name="description" content="國立臺北商業大學 數位多媒體設計系 115-1 學期系上活動總覽：校外參訪、校內演講、公司高層一對一職涯面談、設計工坊、校內外展演與活動照片。">
 <meta property="og:title" content="北商數媒精彩生活｜115-1 活動一次看">
 <meta property="og:image" content="img/career-banner.jpg">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -215,7 +215,7 @@ a.corner:hover{color:var(--hot)}
 .note{font-size:13px;color:var(--muted);margin:0}
 
 /* steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
 .step .n{font-family:var(--f-mono);font-size:13px;color:var(--hot);font-weight:700;letter-spacing:.1em}
 .step h3{font-size:18px}
@@ -234,6 +234,9 @@ a.corner:hover{color:var(--hot)}
 
 footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 
+@media (max-width:1000px){
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media (max-width:760px){
   .mentors,.steps,.prep,.cats,.slots{grid-template-columns:1fr}
   .row{grid-template-columns:1fr auto}
@@ -290,7 +293,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
 
   <section class="intro" id="overview">
     <span class="eyebrow">國立臺北商業大學 數位多媒體設計系 · 115 學年度第 1 學期</span>
-    <h2>本學期活動總覽<br><em>11 月主打：業師一對一職涯面談</em></h2>
+    <h2>本學期活動總覽<br><em>11 月主打：重量級公司高層一對一職涯面談</em></h2>
     <p class="lede">遊戲與動畫特效兩位業界主管親自到校，每人約 10 分鐘，帶作品來，直接聽業界怎麼看。</p>
   </section>
 
@@ -365,8 +368,8 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
     <figure class="banner"><img alt="職涯面談 Career Counsel：唯晶科技 WINKING 與夢想動畫 MOONSHINE，重量級遊戲與動畫公司 CEO、總監親臨面談" src="img/career-banner.jpg"></figure>
     <div class="section-h">
       <span class="eyebrow">Featured · Career Talk 1-on-1</span>
-      <h2 id="career-h">業師一對一職涯面談</h2>
-      <p class="lede">不是講座，是面對面。每位同學約 10 分鐘，可以問履歷、作品集、實習、入行路徑，或直接請業師看作品。名額有限，完成問卷登記與作品上傳者優先安排。</p>
+      <h2 id="career-h">重量級公司高層一對一職涯面談</h2>
+      <p class="lede">不是講座，是面對面。每位同學約 10 分鐘，可以問履歷、作品集、實習、入行路徑，或直接請公司高層看作品。名額有限，完成問卷登記與作品上傳後，系上將審查排序並個別通知。</p>
     </div>
 
     <div class="mentors">
@@ -416,17 +419,17 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <div class="slotcol"><h3>11/02 唯晶科技<span>5 個時段</span></h3><div class="slotgrid" data-start="11:10" data-end="12:00"></div></div>
       <div class="slotcol"><h3>11/25 夢想動畫<span>11 個時段</span></h3><div class="slotgrid" data-start="10:10" data-end="12:00"></div></div>
     </div>
-    <p class="note">實際時段將依問卷回覆排定後個別通知，請以通知為準。</p>
+    <p class="note">實際時段將於審查排序後個別通知，請以通知為準。</p>
 
     <div class="section-h">
       <span class="eyebrow">How to join</span>
-      <h2>報名三步驟</h2>
+      <h2>報名四步驟</h2>
     </div>
     <div class="steps">
       <div class="step">
         <span class="n">STEP 1</span>
         <h3>填寫活動問卷</h3>
-        <p>登記想面談的業師、時段偏好，以及想請教的問題，方便系上排序與業師事先準備。</p>
+        <p>登記想面談的公司高層、時段偏好，以及想請教的問題，方便系上審查排序與高層事先準備。</p>
         <a class="btn primary" href="https://forms.gle/t8mp996bLaJkzrKVA" target="_blank" rel="noopener">填寫問卷 ↗</a>
       </div>
       <div class="step">
@@ -437,6 +440,11 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       </div>
       <div class="step">
         <span class="n">STEP 3</span>
+        <h3>審查與排序通知</h3>
+        <p>報名截止後，系上依問卷內容與作品進行審查並排定順序，再個別通知面談結果與時段。</p>
+      </div>
+      <div class="step">
+        <span class="n">STEP 4</span>
         <h3>準時到場面談</h3>
         <p>收到時段通知後，請提前 10 分鐘到場。每人約 10 分鐘，帶著作品與問題來。</p>
       </div>
