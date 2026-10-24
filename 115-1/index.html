@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="國立臺北商業大學 數位多媒體設計系 115-1 學期系上活動總覽：校外參訪、校內演講、公司高層一對一職涯面談、設計工坊、校內外展演與活動照片。">
+<meta property="og:title" content="北商數媒精彩生活｜115-1 活動一次看">
+<meta property="og:image" content="img/career-banner.jpg">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>北商數媒 115-1 系上活動</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: 頂部為暗場 3D 舞台（透視網格地面 + 活動類別影像環），下方為剪輯時間軸式的學期活動頁 */
+:root{
+  --bg:#f4f6fb; --surface:#ffffff; --ink:#141a2e; --muted:#5b6380;
+  --line:#d9deeb; --accent:#2a4bd7; --accent-ink:#ffffff; --hot:#ff5a36; --hot-soft:#ffe6df;
+  --track:#e6eaf5;
+  /* 舞台固定為暗場，兩種主題相同 */
+  --stage:#05060a; --stage-ink:#e9ecf5; --stage-dim:#7d8399; --stage-grid:rgba(233,236,245,.16);
+  --f-display:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0d1120; --surface:#161c31; --ink:#eef1fa; --muted:#9aa3c2; --line:#2a3252;
+  --accent:#7f97ff; --accent-ink:#0d1120; --hot:#ff7a5c; --hot-soft:#3a1f1a; --track:#1d2440; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1120; --surface:#161c31; --ink:#eef1fa; --muted:#9aa3c2; --line:#2a3252;
+  --accent:#7f97ff; --accent-ink:#0d1120; --hot:#ff7a5c; --hot-soft:#3a1f1a; --track:#1d2440; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;padding-block:48px 64px;display:flex;flex-direction:column;gap:64px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.25}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* ===== Stage ===== */
+.stage{background:var(--stage);color:var(--stage-ink);position:relative;overflow:hidden;height:clamp(520px,82vh,720px);
+  cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.stage.dragging{cursor:grabbing}
+.corner{position:absolute;z-index:5;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stage-ink);text-decoration:none}
+.corner.c-tl{top:22px;left:max(22px,env(safe-area-inset-left,0px))}
+.corner.c-tr{top:22px;right:max(22px,env(safe-area-inset-right,0px))}
+.corner.c-bl{bottom:22px;left:max(22px,env(safe-area-inset-left,0px))}
+.corner.c-br{bottom:22px;right:max(22px,env(safe-area-inset-right,0px))}
+.corner .dim{color:var(--stage-dim)}
+a.corner:hover{color:var(--hot)}
+.stage-title{position:absolute;z-index:4;top:64px;left:0;right:0;text-align:center;padding-inline:16px;pointer-events:none}
+.stage-title h1{font-size:clamp(28px,5vw,52px);font-weight:900;letter-spacing:.02em}
+.stage-title .sub{font-family:var(--f-display);font-size:clamp(16px,2.2vw,22px);letter-spacing:.3em;color:var(--stage-ink);font-weight:500;margin-top:6px}
+.stage-title p{margin:6px 0 0;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;color:var(--stage-dim)}
+.floor{position:absolute;left:-50%;right:-50%;bottom:-10%;height:62%;perspective:420px;perspective-origin:50% 0%;pointer-events:none}
+.floor::before{content:"";position:absolute;inset:0;transform:rotateX(68deg);transform-origin:50% 0%;
+  background-image:linear-gradient(var(--stage-grid) 1px,transparent 1px),linear-gradient(90deg,var(--stage-grid) 1px,transparent 1px);
+  background-size:64px 64px;background-position:0 var(--gy,0px);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 30%);mask-image:linear-gradient(to bottom,transparent 0%,#000 30%)}
+.ring-view{position:absolute;inset:0;perspective:1100px;perspective-origin:50% 38%}
+.ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.card{position:absolute;width:var(--cw);height:calc(var(--cw)*.72);left:calc(var(--cw)/-2);top:calc(var(--cw)*-.36);
+  transform-style:preserve-3d;text-decoration:none;color:var(--stage-ink);display:block}
+.card .face{position:absolute;inset:0;border-radius:10px;overflow:hidden;background:#1a1e2c;box-shadow:0 30px 60px rgba(0,0,0,.6);transition:transform .35s}
+.card img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.35) contrast(1.05);transition:filter .35s}
+.card:hover img,.card:focus-visible img{filter:none}
+.card:hover .face{transform:scale(1.04)}
+.card .label{position:absolute;left:0;top:calc(100% + 16px);white-space:nowrap;display:flex;align-items:baseline;gap:10px}
+.card .label .plus{color:var(--hot);font-family:var(--f-mono)}
+.card .label strong{font-size:17px;font-weight:700}
+.card .label small{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;color:var(--stage-dim)}
+.poster{width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:16px;font-family:var(--f-mono)}
+.poster.p-career{background:radial-gradient(circle at 70% 30%,#ff5a36 0 22%,transparent 23%),radial-gradient(circle at 34% 64%,#2a4bd7 0 22%,transparent 23%),#11131c}
+.poster.p-ws{background:repeating-linear-gradient(45deg,#1e2232 0 14px,#262b3f 14px 28px)}
+.poster .big{font-family:var(--f-display);font-weight:900;font-size:calc(var(--cw)*.17);line-height:1;color:#fff}
+.poster .meta{font-size:11px;letter-spacing:.14em;color:#c8cde0;text-transform:uppercase}
+.poster.p-ws .big{color:#ffd23f}
+.poster.p-show{background:linear-gradient(180deg,#0b0d14 0 55%,#2a4bd7 55% 58%,#0b0d14 58%),radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.28),transparent 60%)}
+.poster.p-show .big{color:#9fb2ff}
+.poster.p-expo{background:conic-gradient(from 200deg at 80% 20%,#ff5a36,#11131c 30%,#11131c 70%,#ff5a36)}
+.poster.p-expo .big{color:#fff}
+.hint{position:absolute;z-index:5;bottom:22px;left:50%;transform:translateX(-50%);font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--stage-dim);white-space:nowrap}
+@media (max-width:640px){.hint{display:none}.corner.c-tr{display:none}}
+
+/* ===== Header ===== */
+.lede{max-width:40em;color:var(--muted);font-size:17px;margin:0}
+.intro{display:flex;flex-direction:column;gap:14px}
+.intro h2{font-size:clamp(28px,4.6vw,44px);font-weight:900}
+.intro h2 em{font-style:normal;color:var(--accent)}
+
+/* timeline */
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.tl-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline}
+.tl-scroll{overflow-x:auto}
+.ruler{position:relative;min-width:640px;height:118px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.months{position:absolute;inset:0 0 auto 0;display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
+.months span{font-family:var(--f-mono);font-size:12px;color:var(--muted);padding:0 0 6px 6px;border-left:1px solid var(--line)}
+.track{position:absolute;left:0;right:0;top:40px;bottom:6px;background:var(--track);border-radius:4px}
+.clip{position:absolute;top:44px;height:23px;border-radius:4px;padding:5px 8px;font-size:12px;line-height:1.3;overflow:hidden;white-space:nowrap;text-decoration:none;background:var(--hot);color:#fff}
+.clip{display:flex;gap:6px;align-items:center}
+.clip b{display:block;font-family:var(--f-mono);font-size:11px}
+.playhead{position:absolute;top:26px;bottom:0;width:2px;background:var(--accent)}
+.playhead::before{content:"今天";position:absolute;top:-2px;left:6px;font-size:11px;color:var(--accent);font-weight:700;white-space:nowrap}
+
+/* overview */
+.section-h{display:flex;flex-direction:column;gap:6px}
+.section-h h2{font-size:clamp(24px,3.6vw,32px);font-weight:900}
+.list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:130px 1fr auto;gap:8px 20px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+.row > div{min-width:0}
+.row .date{font-family:var(--f-mono);font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.row .date small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.row h3{font-size:18px;font-weight:700}
+.row p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.cat{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--accent);margin-right:8px}
+.pill{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap;align-self:center}
+.pill.open{background:var(--hot-soft);color:var(--hot)}
+.pill.soon{background:var(--track);color:var(--muted)}
+
+.pill.closed{background:var(--track);color:var(--ink)}
+.pill.done{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.row p a{font-size:14px;margin-left:8px;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{font:inherit;font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* gallery */
+.gallery-sec{display:flex;flex-direction:column;gap:20px;scroll-margin-top:24px}
+.albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.album{font:inherit;color:inherit;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;padding:0;display:flex;flex-direction:column;cursor:pointer}
+.album:disabled,.album.upcoming{cursor:default}
+.album:not(:disabled):not(.upcoming):hover .a-cover img{transform:scale(1.05)}
+.a-cover{position:relative;aspect-ratio:4/3;max-width:100%;background:var(--track);overflow:hidden;display:block}
+.a-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.a-empty{position:absolute;inset:12px;border:1.5px dashed var(--muted);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;text-align:center;padding:8px}
+.a-n{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;padding:2px 8px;border-radius:4px}
+.a-meta{display:flex;justify-content:space-between;gap:8px;padding:14px 16px 0;font-size:12px;color:var(--muted)}
+.a-meta .cat{margin:0}
+.a-title{padding:4px 16px 0;font-weight:700;font-size:16px;line-height:1.4}
+.a-sub{padding:2px 16px 16px;font-size:13px;color:var(--muted)}
+.album.upcoming{opacity:.7}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(5,6,10,.94);color:#eef1fa;display:flex;flex-direction:column;gap:12px;
+  padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb[hidden]{display:none}
+.lb-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;max-width:1100px;width:100%;margin:0 auto}
+.lb-top .eyebrow{color:#9aa3c2}
+.lb-top h3{font-size:18px}
+.lb button{font:inherit;background:transparent;color:#eef1fa;border:1px solid rgba(238,241,250,.35);border-radius:6px;padding:6px 14px;cursor:pointer}
+.lb button:disabled{opacity:.3;cursor:default}
+.lb-fig{flex:1;min-height:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.lb-fig img{max-width:100%;max-height:100%;min-height:0;object-fit:contain;flex:1 1 auto}
+.lb-fig figcaption{font-size:14px;color:#c8cde0}
+.lb-nav{display:flex;justify-content:center;align-items:center;gap:16px;font-size:13px}
+
+/* category blocks */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.catblock{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:24px}
+.catblock figure{margin:0;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--track)}
+.catblock figure img{width:100%;height:100%;object-fit:cover;display:block}
+.catblock .cb{padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.catblock h3{font-size:20px}
+.catblock p{margin:0;color:var(--muted);font-size:15px}
+.catblock .cap{font-size:13px}
+
+.catblock.ws-block{grid-column:1 / -1;flex-direction:row}
+.ws-block .ws-fig{aspect-ratio:1449/1087;flex:0 0 52%;background:#1a0d08;align-self:center}
+.ws-block .ws-fig img{object-fit:cover}
+.ws-block .cb{justify-content:center;gap:10px;padding:24px}
+.ws-meta{margin:6px 0 0;display:flex;flex-direction:column;gap:8px;border-top:1px dashed var(--line);padding-top:12px}
+.ws-meta div{display:grid;grid-template-columns:48px 1fr;gap:12px;font-size:15px}
+.ws-meta dt{font-weight:700;color:var(--hot)}
+.ws-meta dd{margin:0}
+.card img.ws-img{object-position:50% 50%}
+@media (max-width:760px){.catblock.ws-block{flex-direction:column}.ws-block .ws-fig{flex:none;width:100%}}
+/* feature */
+.feature{display:flex;flex-direction:column;gap:28px;scroll-margin-top:24px}
+.mentors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.mentor{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.slate{display:grid;grid-template-columns:auto 1fr;background:var(--ink);color:var(--bg)}
+.slate .day{font-family:var(--f-mono);padding:14px 18px;border-right:1px solid color-mix(in srgb,var(--bg) 25%,transparent);display:flex;flex-direction:column;justify-content:center}
+.slate .day strong{font-size:30px;line-height:1}
+.slate .day span{font-size:12px;opacity:.75}
+.slate .time{padding:14px 18px;display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0}
+.slate .time .mono{font-family:var(--f-mono);font-size:18px;font-weight:700}
+.slate .time small{font-size:12px;opacity:.75}
+.slate .time small.dl{opacity:1;color:var(--hot-soft);font-weight:700}
+.countdown{font-family:var(--f-mono);font-size:12px;color:var(--hot);font-weight:700}
+.m-body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.m-co{font-size:13px;color:var(--muted);font-weight:500}
+.m-name{font-size:24px;font-weight:900}
+.m-name small{font-size:14px;font-weight:500;color:var(--muted);margin-left:6px}
+.m-role{font-weight:700;color:var(--accent);font-size:15px}
+.m-body ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.m-body ul li::marker{color:var(--hot)}
+.fit{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted)}
+.fit b{color:var(--ink)}
+
+.banner{margin:0;border-radius:10px;overflow:hidden;aspect-ratio:1920/813;max-width:100%;background:#05060a}
+.banner img{width:100%;height:100%;object-fit:cover;display:block}
+/* slots */
+.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.slotcol{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.slotcol h3{font-size:17px}
+.slotcol h3 span{font-family:var(--f-mono);font-size:13px;color:var(--muted);font-weight:500;margin-left:8px}
+.slotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.slot{border:1px solid var(--line);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;background:var(--bg)}
+.slot b{font-family:var(--f-mono);font-size:14px;font-variant-numeric:tabular-nums}
+.slot span{font-size:12px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin:0}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.due{align-self:flex-start;font-size:12px;font-weight:700;color:var(--hot);background:var(--hot-soft);padding:2px 10px;border-radius:999px}
+.step.review{border-style:dashed;border-color:var(--accent)}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.step .n{font-family:var(--f-mono);font-size:13px;color:var(--hot);font-weight:700;letter-spacing:.1em}
+.step h3{font-size:18px}
+.step p{margin:0;color:var(--muted);font-size:14.5px;flex:1}
+.step code{font-family:var(--f-mono);font-size:13px;background:var(--track);padding:1px 6px;border-radius:4px;color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;padding:11px 18px;border-radius:6px;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent);background:transparent}
+.btn:hover{filter:brightness(1.08)}
+
+.prep{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:24px}
+.prep h3{font-size:20px}
+.prep ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.prep li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15px}
+.prep li::before{content:"";width:14px;height:14px;border:2px solid var(--accent);border-radius:3px;margin-top:5px}
+
+footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+@media (max-width:760px){
+  .mentors,.steps,.prep,.cats,.slots{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr auto}
+  .row .date{grid-column:1 / -1}
+}
+</style>
+</head>
+<body>
+
+
+<!-- ===== 3D Stage ===== -->
+<section class="stage" id="stage" aria-label="活動類別">
+  <span class="corner c-tl">NTUB <span class="dim">/</span> 數位多媒體設計系</span>
+  <a class="corner c-tr" href="#gallery">活動紀錄 <span class="dim">/ Gallery</span></a>
+  <a class="corner c-bl" href="#overview">活動總覽 <span class="dim">/ 全部</span></a>
+  <a class="corner c-br" href="#career">職涯面談報名 ↘</a>
+  <div class="stage-title">
+    <h1>北商數媒精彩生活</h1>
+    <p class="sub">115-1 活動一次看</p>
+    <p>FIELD TRIP · TALK · CAREER · WORKSHOP · SHOWCASE · EXPO</p>
+  </div>
+  <div class="floor" id="floor"></div>
+  <div class="ring-view"><div class="ring" id="ring">
+    <a class="card" href="#cat-visit" aria-label="校外參訪">
+      <div class="face"><img alt="同學於祥儀機器人夢工廠門口舉著「職場體驗」布條合影" src="img/visit.jpg"></div>
+      <div class="label"><span class="plus">+</span><strong>校外參訪</strong><small>FIELD TRIP</small></div>
+    </a>
+    <a class="card" href="#cat-talk" aria-label="校內演講">
+      <div class="face"><img alt="業師於電腦教室向同學演講" src="img/talk.jpg"></div>
+      <div class="label"><span class="plus">+</span><strong>校內演講</strong><small>TALK</small></div>
+    </a>
+    <a class="card" href="#career" aria-label="職涯面談">
+      <div class="face"><img alt="職涯面談海報：與高層對談，給未來的自己一個明確方向" src="img/career-poster.jpg"></div>
+      <div class="label"><span class="plus">+</span><strong>職涯面談</strong><small>CAREER</small></div>
+    </a>
+    <a class="card" href="#cat-workshop" aria-label="設計工坊">
+      <div class="face"><img class="ws-img" alt="Art Season Candle Making Workshop：營火與帳篷夜景前的四款果凍蠟燭作品" src="img/ws-glow.jpg"></div>
+      <div class="label"><span class="plus">+</span><strong>設計工坊</strong><small>WORKSHOP</small></div>
+    </a>
+    <a class="card" href="#cat-show" aria-label="校內展演">
+      <div class="face"><div class="poster p-show"><span class="meta">On Campus</span><span class="big">SHOW<br>CASE</span><span class="meta">校內展演</span></div></div>
+      <div class="label"><span class="plus">+</span><strong>校內展演</strong><small>SHOWCASE</small></div>
+    </a>
+    <a class="card" href="#cat-expo" aria-label="校外展演">
+      <div class="face"><div class="poster p-expo"><span class="meta">Off Campus</span><span class="big">EXPO</span><span class="meta">校外展演</span></div></div>
+      <div class="label"><span class="plus">+</span><strong>校外展演</strong><small>EXPO</small></div>
+    </a>
+  </div></div>
+  <span class="hint">拖曳或捲動 · 點選類別（6 類）</span>
+</section>
+
+<div class="gutter">
+<div class="wrap">
+
+  <section class="intro" id="overview">
+    <span class="eyebrow">國立臺北商業大學 數位多媒體設計系 · 115 學年度第 1 學期</span>
+    <h2>本學期活動總覽<br><em>11 月主打：重量級公司高層一對一職涯面談</em></h2>
+    <p class="lede">遊戲與動畫特效兩位業界主管親自到校，每人約 10 分鐘，帶作品來，直接聽業界怎麼看。</p>
+  </section>
+
+  <section class="tl" aria-label="115-1 學期時間軸">
+    <div class="tl-head">
+      <span class="eyebrow">Semester Timeline · 2026.09 – 2027.01</span>
+      <span class="legend" id="legend"></span>
+    </div>
+    <div class="tl-scroll">
+      <div class="ruler">
+        <div class="months"><span>9 月</span><span>10 月</span><span>11 月</span><span>12 月</span><span>1 月</span></div>
+        <div class="track"></div>
+        <div class="playhead" id="playhead"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-h" aria-labelledby="ov">
+    <span class="eyebrow">Overview</span>
+    <h2 id="ov">活動一覽</h2>
+    <div class="chips" role="group" aria-label="依類別篩選" data-target="evlist"></div>
+    <div class="list" id="evlist"></div>
+  </section>
+
+  <section class="section-h" aria-labelledby="catsh">
+    <span class="eyebrow">Categories</span>
+    <h2 id="catsh">活動類別與花絮</h2>
+    <div class="cats">
+      <article class="catblock" id="cat-visit">
+        <figure><img alt="同學於祥儀機器人夢工廠門口舉著「職場體驗」布條合影" src="img/visit.jpg"></figure>
+        <div class="cb"><span class="eyebrow">Field Trip</span><h3>校外參訪</h3>
+          <p>走進企業與工作現場，看設計與製作在真實產業裡怎麼運作。</p>
+          <p class="cap">花絮：祥儀機器人夢工廠與安東青創-斐闊&amp;邁思達數位科技職場體驗（Young 桃下一步）</p></div>
+      </article>
+      <article class="catblock" id="cat-talk">
+        <figure><img alt="業師於電腦教室向同學演講" src="img/talk.jpg"></figure>
+        <div class="cb"><span class="eyebrow">Talk</span><h3>校內演講</h3>
+          <p>邀請動畫、遊戲與影像產業業師到校分享作品與職涯經驗。</p>
+          <p class="cap">花絮：業師 Ethan 李翌誠 分享日本動畫產業經驗</p></div>
+      </article>
+      <article class="catblock ws-block" id="cat-workshop">
+        <figure class="ws-fig"><img alt="Art Season Candle Making Workshop：營火與帳篷夜景前的四款果凍蠟燭作品" src="img/ws-glow.jpg"></figure>
+        <div class="cb"><span class="eyebrow">Workshop · 2026 Art Season</span><h3>設計工坊｜微光記憶 創意果凍蠟燭手作坊</h3>
+          <p>少螢幕、多動手的實作工作坊。用果凍蠟、貝殼、乾燥花與造型蠟，親手做一盞屬於自己的蠟燭。</p>
+          <dl class="ws-meta">
+            <div><dt>時間</dt><dd>11/02（一）16:30–19:30</dd></div>
+            <div><dt>地點</dt><dd>弘毅樓 A439 教室</dd></div>
+            <div><dt>報名</dt><dd>免費參加，<b>報名已結束</b>，感謝大家熱烈參與。</dd></div>
+          </dl>
+          <a class="btn ghost" style="align-self:flex-start;margin-top:6px" href="../ntub-studio/art-season/glow/index.html" target="_blank" rel="noopener">工作坊活動頁 ↗</a></div>
+      </article>
+      <article class="catblock" id="cat-show">
+        <figure><div class="poster p-show" style="--cw:420px"><span class="meta">On Campus</span><span class="big">SHOW<br>CASE</span><span class="meta">校內展演</span></div></figure>
+        <div class="cb"><span class="eyebrow">Showcase</span><h3>校內展演</h3>
+          <p>課程成果展、作品發表與校內藝文展演，讓作品在校園被看見。本學期場次待公告。</p></div>
+      </article>
+      <article class="catblock" id="cat-expo">
+        <figure><div class="poster p-expo" style="--cw:420px"><span class="meta">Off Campus</span><span class="big">EXPO</span><span class="meta">校外展演</span></div></figure>
+        <div class="cb"><span class="eyebrow">Expo</span><h3>校外展演</h3>
+          <p>帶作品走出校園，參與設計展、競賽與產業展覽，和業界與大眾面對面。本學期場次待公告。</p></div>
+      </article>
+      <article class="catblock">
+        <figure><img alt="職涯面談海報：與高層對談，給未來的自己一個明確方向" src="img/career-poster.jpg"></figure>
+        <div class="cb"><span class="eyebrow">Career</span><h3>職涯面談</h3>
+          <p>業界主管一對一看作品、聊職涯。本學期兩場，報名資訊見下方。</p>
+          <a href="#career">前往報名 ↓</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="feature" id="career" aria-labelledby="career-h">
+    <figure class="banner"><img alt="職涯面談 Career Counsel：唯晶科技 WINKING 與夢想動畫 MOONSHINE，重量級遊戲與動畫公司 CEO、總監親臨面談" src="img/career-banner.jpg"></figure>
+    <div class="section-h">
+      <span class="eyebrow">Featured · Career Talk 1-on-1</span>
+      <h2 id="career-h">重量級公司高層一對一職涯面談</h2>
+      <p class="lede">不是講座，是面對面。每位同學約 10 分鐘，可以問履歷、作品集、實習、入行路徑，或直接請高層看作品。<b>報名截止：遊戲（唯晶科技）10/29（四）、動畫（夢想動畫）11/19（四）</b>。名額有限，報名後由系上審查問卷與作品集，通過者依報名先後排定時段並另行通知。</p>
+    </div>
+
+    <div class="mentors">
+      <article class="mentor">
+        <div class="slate">
+          <div class="day"><strong>11/02</strong><span>MON</span></div>
+          <div class="time"><span class="mono">11:10 – 12:00</span><small>北商大 · 數媒系 · 每人約 10 分鐘</small><small class="dl">報名截止 10/29（四）</small><span class="countdown" data-until="2026-11-02T11:10:00+08:00"></span></div>
+        </div>
+        <div class="m-body">
+          <span class="m-co">唯晶科技 Winking Studios</span>
+          <h3 class="m-name">孫雨塵<small>Howard Sun</small></h3>
+          <span class="m-role">台灣區營運總監</span>
+          <ul>
+            <li>跨足人資與多個產業後，從經營管理角度進入遊戲產業</li>
+            <li>負責經營策略、市場分析、公關行銷、人才管理與制度設計</li>
+            <li>常代表唯晶受邀至 TGDF 台北遊戲開發者論壇、校園演講分享產業趨勢、次世代 3D/VR 遊戲開發與人才培訓</li>
+          </ul>
+          <p class="fit"><b>適合來聊：</b>想進遊戲產業、好奇遊戲公司怎麼看新人、美術／企劃／營運職缺怎麼準備。</p>
+        </div>
+      </article>
+
+      <article class="mentor">
+        <div class="slate">
+          <div class="day"><strong>11/25</strong><span>WED</span></div>
+          <div class="time"><span class="mono">10:10 – 12:00</span><small>北商大 · 數媒系 · 每人約 10 分鐘</small><small class="dl">報名截止 11/19（四）</small><span class="countdown" data-until="2026-11-25T10:10:00+08:00"></span></div>
+        </div>
+        <div class="m-body">
+          <span class="m-co">夢想動畫 MoonShine Studio</span>
+          <h3 class="m-name">葉傳耀</h3>
+          <span class="m-role">執行長 CEO ／ 監製</span>
+          <ul>
+            <li>國立臺灣藝術大學多媒體動畫藝術學系動畫碩班校友</li>
+            <li>長期耕耘影視動畫、視覺特效與專案管理；曾任巴哈姆特 ACG 創作大賽、關渡國際動畫節等評審</li>
+            <li>監製與參與作品：電影《五月天人生無限公司》視覺影像、《How 哥宇宙》MV、ASUS ROG 系列宣傳影片；團隊作品《星空下的黑潮島嶼》獲金鐘獎視覺特效獎</li>
+          </ul>
+          <p class="fit"><b>適合來聊：</b>動畫、特效、MV／廣告影像製作，作品集與 demo reel 怎麼剪才有說服力。
+            <a href="https://www.linkedin.com/in/%E8%B5%B0%E7%8B%97-%E6%9D%8E-609b4a179/" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-h">
+      <span class="eyebrow">Time slots</span>
+      <h2>面談時段</h2>
+    </div>
+    <div class="slots">
+      <div class="slotcol"><h3>11/02 唯晶科技<span>5 個時段</span></h3><div class="slotgrid" data-start="11:10" data-end="12:00"></div></div>
+      <div class="slotcol"><h3>11/25 夢想動畫<span>11 個時段</span></h3><div class="slotgrid" data-start="10:10" data-end="12:00"></div></div>
+    </div>
+    <p class="note">時段不開放自選。通過審查的同學將依報名先後順序排入以上時段，並以電子信箱個別通知，請以通知為準。</p>
+
+    <div class="section-h">
+      <span class="eyebrow">How to join</span>
+      <h2>報名流程</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="n">STEP 1</span>
+        <h3>填寫問卷並附上作品集連結</h3>
+        <span class="due">遊戲 10/29（四）截止</span><span class="due">動畫 11/19（四）截止</span>
+        <p>選擇想面談的方向（遊戲／動畫），填寫想請教的問題，並附上作品集的雲端連結（請開啟「知道連結的人都能檢視」）。有網頁形式的作品集也可以一併附上網址。</p>
+        <a class="btn primary" href="https://forms.gle/t8mp996bLaJkzrKVA" target="_blank" rel="noopener">填寫問卷 ↗</a>
+      </div>
+      <div class="step review">
+        <span class="n">STEP 2</span>
+        <h3>系上審查與排序</h3>
+        <p>各場報名截止後，系上依問卷內容與作品集進行審查，再依報名先後順序排定面談時段。名額有限，未附作品集或連結無法開啟者可能無法排入。</p>
+      </div>
+      <div class="step">
+        <span class="n">STEP 3</span>
+        <h3>收到通知・準時到場</h3>
+        <p>錄取同學會以電子信箱收到個別通知與面談時段，請隨時留意信箱。請提前 10 分鐘到場，每人約 10 分鐘，帶著作品與問題來。</p>
+      </div>
+    </div>
+
+    <div class="prep">
+      <div>
+        <span class="eyebrow">Before you go</span>
+        <h3>10 分鐘面談準備清單</h3>
+      </div>
+      <ul>
+        <li>挑 2–3 件代表作就好，每件 1 分鐘講完「目標、你負責什麼、成果」</li>
+        <li>一頁式履歷（紙本或平板皆可），作品集連結當天也能在手機或平板上打開</li>
+        <li>動畫／特效方向：準備 1 分鐘內的 demo reel</li>
+        <li>遊戲方向：角色、場景或 UI 作品，附上製作流程</li>
+        <li>寫下 2–3 個最想問的問題，例如：新人作品集最常犯的錯是什麼？</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gallery-sec" id="gallery" aria-labelledby="gal-h">
+    <div class="section-h">
+      <span class="eyebrow">Gallery · 活動紀錄</span>
+      <h2 id="gal-h">活動成果與照片</h2>
+      <p class="lede">每場活動結束後，照片會陸續上架到這裡。點相簿可放大瀏覽。</p>
+    </div>
+    <div class="chips" role="group" aria-label="依類別篩選相簿" data-target="albums"></div>
+    <div class="albums" id="albums"></div>
+  </section>
+
+  <footer>
+    <span>國立臺北商業大學 數位多媒體設計系 · 115 學年度第 1 學期</span>
+    <span>活動資訊如有異動，以系辦公告為準</span>
+  </footer>
+</div>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="lb-top"><div><span class="eyebrow" id="lb-meta"></span><h3 id="lb-title"></h3></div><button type="button" class="lb-x" id="lb-x" aria-label="關閉">✕</button></div>
+  <figure class="lb-fig"><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+  <div class="lb-nav"><button type="button" id="lb-prev" aria-label="上一張">←</button><span id="lb-count" class="mono"></span><button type="button" id="lb-next" aria-label="下一張">→</button></div>
+</div>
+
+<script>
+/* ============================================================
+   活動資料：新增活動只要在 EVENTS 裡加一筆
+   cat: visit 校外參訪 | talk 校內演講 | career 職涯面談 | workshop 設計工坊 | show 校內展演 | expo 校外展演
+   date: "YYYY-MM-DD"（沒有確定日期就省略，填 dateLabel）
+   status: 可省略（依日期自動判斷）；"closed" = 報名已結束；"tbd" = 待公告；"done" = 已結束
+   short: 時間軸上顯示的短名稱
+   deadline: 報名截止日 "YYYY-MM-DD"，過了會自動顯示「審查中」
+   photos: 活動結束後放照片 [{src:"img/xxx.jpg", cap:"說明"}]
+   ============================================================ */
+var EVENTS=[
+  {id:"visit-xiangyi", cat:"visit", short:"職場體驗", title:"祥儀機器人夢工廠與安東青創-斐闊&邁思達數位科技職場體驗", sub:"Young 桃下一步 · 職場體驗參訪", date:"2026-10-15", status:"done",
+   photos:[{src:"img/visit-1015/v01.jpg", cap:"祥儀機器人夢工廠門口大合照"},
+           {src:"img/visit-1015/v02.jpg", cap:"機器人夢工廠展區合影"},
+           {src:"img/visit-1015/v03.jpg", cap:"動手體驗互動裝置"},
+           {src:"img/visit-1015/v04.jpg", cap:"參觀展區"},
+           {src:"img/visit-1015/v05.jpg", cap:"入場導覽"},
+           {src:"img/visit-1015/v06.jpg", cap:"企業分享與交流"},
+           {src:"img/visit-1015/v07.jpg", cap:"職場體驗交流合影"}]},
+  {id:"talk-ethan", cat:"talk", title:"業師演講｜Ethan 李翌誠", sub:"日本動畫產業經驗分享", dateLabel:"115-1", status:"done",
+   photos:[{src:"img/talk.jpg", cap:"業師於電腦教室分享"}]},
+  {id:"career-winking", cat:"career", short:"唯晶科技", title:"唯晶科技 孫雨塵 台灣區營運總監", deadline:"2026-10-29", sub:"遊戲產業經營、人才與職涯方向諮詢 · 每人約 10 分鐘 · 10/29 報名截止",
+   date:"2026-11-02", time:"11:10–12:00", link:"#career", photos:[]},
+  {id:"ws-glow", cat:"workshop", short:"蠟燭手作坊", title:"2026 藝術季｜微光記憶 創意果凍蠟燭手作坊", sub:"弘毅樓 A439 教室 · 免費參加",
+   date:"2026-11-02", time:"16:30–19:30", status:"closed", link:"../ntub-studio/art-season/glow/index.html", photos:[]},
+  {id:"career-moonshine", cat:"career", short:"夢想動畫", title:"夢想動畫 葉傳耀 CEO", deadline:"2026-11-19", sub:"動畫、視覺特效與影視製作職涯諮詢 · 每人約 10 分鐘 · 11/19 報名截止",
+   date:"2026-11-25", time:"10:10–12:00", link:"#career", photos:[]}
+];
+var CATS={visit:{n:"校外參訪",c:"#1f9e89"},talk:{n:"校內演講",c:"#7a5af8"},career:{n:"職涯面談",c:"#ff5a36"},
+  workshop:{n:"設計工坊",c:"#b8862f"},show:{n:"校內展演",c:"#2a4bd7"},expo:{n:"校外展演",c:"#d6336c"}};
+(function(){
+  /* timeline */
+  var start=new Date("2026-09-01T00:00:00+08:00").getTime(), end=new Date("2027-02-01T00:00:00+08:00").getTime();
+  function pct(t){return Math.max(0,Math.min(100,(t-start)/(end-start)*100));}
+  var now=Date.now(), WD="日一二三四五六";
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function ts(e){return e.date?new Date(e.date+"T00:00:00+08:00").getTime():null;}
+  function md(e){var p=e.date.split("-");return +p[1]+"/"+p[2].padStart(2,"0");}
+  function ended(e){var t=ts(e);return e.status==="done"||(t!==null&&now>t+86400000);}
+  function state(e){
+    if(ended(e)) return {k:"done",t:"已結束"};
+    if(e.status==="closed"||(e.deadline&&now>new Date(e.deadline+"T23:59:59+08:00").getTime())) return {k:"closed",t:e.deadline?"審查中":"報名已結束"};
+    if(e.status==="tbd"||!e.date) return {k:"soon",t:"待公告"};
+    return {k:"open",t:"報名中"};
+  }
+  var sorted=EVENTS.slice().sort(function(a,b){var x=ts(a),y=ts(b);if(x===null)return 1;if(y===null)return -1;return x-y||(a.time||"").localeCompare(b.time||"");});
+
+  /* legend */
+  var used={};EVENTS.forEach(function(e){used[e.cat]=1;});
+  document.getElementById("legend").innerHTML=Object.keys(CATS).filter(function(k){return used[k];}).map(function(k){return '<span><i style="background:'+CATS[k].c+'"></i>'+CATS[k].n+'</span>';}).join("");
+
+  /* timeline clips with lanes */
+  var ruler=document.querySelector(".ruler"), lanes=[], W=11;
+  sorted.filter(function(e){var t=ts(e);return t!==null&&t>=start&&t<end;}).forEach(function(e){
+    var l=pct(ts(e)), lane=0; while(lanes[lane]!==undefined&&lanes[lane]>l) lane++; lanes[lane]=l+W+.3;
+    var a=document.createElement("a"); a.className="clip"; a.href=e.link&&e.link.charAt(0)==="#"?e.link:"#ev-"+e.id;
+    a.style.left=l+"%"; a.style.width=W+"%"; a.style.top=(44+lane*26)+"px"; a.style.background=CATS[e.cat].c;
+    if(ended(e)) a.style.opacity=.55;
+    a.innerHTML="<b>"+md(e)+"</b>"+esc(e.short||e.title); a.title=e.title; ruler.appendChild(a);
+  });
+  ruler.style.height=(58+Math.max(1,lanes.length)*26)+"px";
+
+  /* overview list */
+  function renderList(f){
+    document.getElementById("evlist").innerHTML=sorted.filter(function(e){return !f||e.cat===f;}).map(function(e){
+      var s=state(e), d=e.date?md(e):esc(e.dateLabel||"待公告");
+      var sm=e.date?("週"+WD.charAt(new Date(ts(e)).getDay())+(e.time?" "+e.time:"")):"";
+      var link=e.link?(' <a href="'+esc(e.link)+'"'+(e.link.charAt(0)==="#"?"":' target="_blank" rel="noopener"')+'>'+(e.link.charAt(0)==="#"?"詳情 ↓":"活動頁 ↗")+'</a>'):"";
+      var pics=ended(e)?(' <a href="#gallery" data-album="'+e.id+'">'+(e.photos.length?"看照片 ("+e.photos.length+")":"照片整理中")+'</a>'):"";
+      return '<div class="row" id="ev-'+e.id+'"><div class="date">'+d+'<small>'+sm+'</small></div><div><h3><span class="cat" style="color:'+CATS[e.cat].c+'">'+CATS[e.cat].n+'</span>'+esc(e.title)+'</h3><p>'+esc(e.sub||"")+link+pics+'</p></div><span class="pill '+s.k+'">'+s.t+'</span></div>';
+    }).join("")||'<p class="note">這個類別目前還沒有活動。</p>';
+  }
+
+  /* gallery */
+  function renderAlbums(f){
+    var list=sorted.filter(function(e){return ended(e)&&(!f||e.cat===f);}).reverse();
+    var up=sorted.filter(function(e){return !ended(e)&&(!f||e.cat===f);});
+    var html=list.map(function(e){
+      var cover=e.photos[0];
+      return '<button type="button" class="album" data-id="'+e.id+'"'+(cover?"":" disabled")+'>'+
+        '<span class="a-cover">'+(cover?'<img loading="lazy" alt="" src="'+esc(cover.src)+'">':'<span class="a-empty">照片整理中</span>')+
+        (e.photos.length>1?'<span class="a-n mono">+'+(e.photos.length-1)+'</span>':'')+'</span>'+
+        '<span class="a-meta"><span class="cat" style="color:'+CATS[e.cat].c+'">'+CATS[e.cat].n+'</span><span class="mono">'+(e.date?md(e):esc(e.dateLabel||""))+'</span></span>'+
+        '<span class="a-title">'+esc(e.title)+'</span>'+
+        '<span class="a-sub">'+(e.photos.length?e.photos.length+" 張照片":"活動已結束，照片上傳中")+'</span></button>';
+    }).join("");
+    html+=up.map(function(e){
+      return '<div class="album upcoming"><span class="a-cover"><span class="a-empty">'+md(e)+' 活動後上架</span></span>'+
+        '<span class="a-meta"><span class="cat" style="color:'+CATS[e.cat].c+'">'+CATS[e.cat].n+'</span><span class="mono">'+md(e)+'</span></span>'+
+        '<span class="a-title">'+esc(e.title)+'</span><span class="a-sub">即將舉辦</span></div>';
+    }).join("");
+    document.getElementById("albums").innerHTML=html||'<p class="note">這個類別目前還沒有活動紀錄。</p>';
+  }
+
+  /* chips */
+  document.querySelectorAll(".chips").forEach(function(box){
+    var tgt=box.dataset.target, keys=[""].concat(Object.keys(CATS).filter(function(k){return used[k];}));
+    box.innerHTML=keys.map(function(k){return '<button type="button" class="chip" data-f="'+k+'" aria-pressed="'+(k===""?"true":"false")+'">'+(k?'<i style="background:'+CATS[k].c+'"></i>'+CATS[k].n:"全部")+'</button>';}).join("");
+    box.addEventListener("click",function(ev){var b=ev.target.closest(".chip");if(!b)return;
+      box.querySelectorAll(".chip").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});
+      (tgt==="evlist"?renderList:renderAlbums)(b.dataset.f);});
+  });
+  renderList(""); renderAlbums("");
+
+  /* lightbox */
+  var lb=document.getElementById("lb"), cur=null, idx=0;
+  function show(){var p=cur.photos[idx];document.getElementById("lb-img").src=p.src;document.getElementById("lb-img").alt=p.cap||cur.title;
+    document.getElementById("lb-cap").textContent=p.cap||"";document.getElementById("lb-count").textContent=(idx+1)+" / "+cur.photos.length;
+    document.getElementById("lb-prev").disabled=document.getElementById("lb-next").disabled=cur.photos.length<2;}
+  function open(id){cur=EVENTS.filter(function(e){return e.id===id;})[0]; if(!cur||!cur.photos.length) return; idx=0;
+    document.getElementById("lb-title").textContent=cur.title;
+    document.getElementById("lb-meta").textContent=CATS[cur.cat].n+" · "+(cur.date?md(cur):cur.dateLabel||"");
+    show(); lb.hidden=false; document.body.style.overflow="hidden"; document.getElementById("lb-x").focus();}
+  function close(){lb.hidden=true;document.body.style.overflow="";}
+  document.addEventListener("click",function(ev){var a=ev.target.closest(".album[data-id]");if(a){open(a.dataset.id);return;}
+    var l=ev.target.closest("[data-album]");if(l){open(l.dataset.album);} });
+  document.getElementById("lb-x").onclick=close;
+  lb.addEventListener("click",function(ev){if(ev.target===lb)close();});
+  document.getElementById("lb-prev").onclick=function(){idx=(idx-1+cur.photos.length)%cur.photos.length;show();};
+  document.getElementById("lb-next").onclick=function(){idx=(idx+1)%cur.photos.length;show();};
+  document.addEventListener("keydown",function(ev){if(lb.hidden)return;if(ev.key==="Escape")close();if(ev.key==="ArrowLeft")document.getElementById("lb-prev").click();if(ev.key==="ArrowRight")document.getElementById("lb-next").click();});
+  var ph=document.getElementById("playhead");
+  if(now<start||now>end) ph.hidden=true; else ph.style.left=pct(now)+"%";
+  document.querySelectorAll(".countdown").forEach(function(el){
+    var d=Math.ceil((new Date(el.dataset.until).getTime()-now)/86400000);
+    el.textContent=d>1?"倒數 "+d+" 天":d===1?"明天":d===0?"今天！":"已結束";
+  });
+
+  /* slots: 10 分鐘一格 */
+  function mm(s){var p=s.split(":");return +p[0]*60+ +p[1];}
+  function fmt(m){return Math.floor(m/60)+":"+String(m%60).padStart(2,"0");}
+  document.querySelectorAll(".slotgrid").forEach(function(g){
+    var a=mm(g.dataset.start), b=mm(g.dataset.end), i=1, html="";
+    for(var t=a;t+10<=b;t+=10,i++) html+='<div class="slot"><b>'+fmt(t)+'–'+fmt(t+10)+'</b><span>第 '+i+' 位</span></div>';
+    g.innerHTML=html;
+  });
+
+  /* 3D ring */
+  var stage=document.getElementById("stage"), ring=document.getElementById("ring"), floor=document.getElementById("floor");
+  var cards=[].slice.call(ring.children), n=cards.length;
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var angle=0, vel=0, drag=null, dragged=false;
+  function layout(){
+    var w=stage.clientWidth, cw=Math.max(140,Math.min(290,w*.22)), r=Math.max(190,Math.min(500,w*.38));
+    ring.style.setProperty("--cw",cw+"px");
+    cards.forEach(function(c,i){ c.dataset.base=i*360/n; c.dataset.r=r; });
+  }
+  function render(){
+    cards.forEach(function(c){
+      var a=(+c.dataset.base+angle)*Math.PI/180, r=+c.dataset.r;
+      var x=Math.sin(a)*r, z=Math.cos(a)*r - r*.35;
+      var depth=(Math.cos(a)+1)/2;
+      c.style.transform="translate3d("+x+"px,0,"+z+"px) rotateY("+(-Math.sin(a)*28)+"deg)";
+      c.style.opacity=Math.max(0,(depth-.15)/.85); c.style.zIndex=Math.round(depth*100);
+      c.style.pointerEvents=depth>.35?"auto":"none";
+    });
+    floor.style.setProperty("--gy",(angle*3)+"px");
+  }
+  layout(); render();
+  window.addEventListener("resize",function(){layout();render();});
+
+  var lastScroll=window.scrollY;
+  window.addEventListener("scroll",function(){var d=window.scrollY-lastScroll; lastScroll=window.scrollY; if(window.scrollY<stage.offsetHeight) vel+=d*.04;},{passive:true});
+  stage.addEventListener("pointerdown",function(e){drag={x:e.clientX,a:angle};dragged=false;stage.classList.add("dragging");});
+  window.addEventListener("pointermove",function(e){ if(!drag) return; var dx=e.clientX-drag.x; if(Math.abs(dx)>4) dragged=true; var na=drag.a+dx*.25; vel=na-angle; angle=na; render(); });
+  window.addEventListener("pointerup",function(){drag=null;stage.classList.remove("dragging");});
+  cards.forEach(function(c){ c.addEventListener("click",function(e){ if(dragged){e.preventDefault();dragged=false;} }); c.addEventListener("dragstart",function(e){e.preventDefault();}); });
+
+  function tick(){
+    if(!drag){ angle+=vel+(reduce?0:.06); vel*=.92; render(); }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+
+</body>
+</html>
