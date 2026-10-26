@@ -332,7 +332,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
         <figure><img alt="業師於電腦教室向同學演講" src="img/talk.jpg"></figure>
         <div class="cb"><span class="eyebrow">Talk</span><h3>校內演講</h3>
           <p>邀請動畫、遊戲與影像產業業師到校分享作品與職涯經驗。</p>
-          <p class="cap">花絮：業師 Ethan 李翌誠 分享日本動畫產業經驗</p></div>
+          <p class="cap">花絮：10/07 業師 Ethan 李翌誠 分享日本動畫產業經驗。接下來：10/29 金漫獎得主 葉明軒、11/05 玩具設計師 江明諺。</p></div>
       </article>
       <article class="catblock ws-block" id="cat-workshop">
         <figure class="ws-fig"><img alt="Art Season Candle Making Workshop：營火與帳篷夜景前的四款果凍蠟燭作品" src="img/ws-glow.jpg"></figure>
@@ -488,7 +488,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
    活動資料：新增活動只要在 EVENTS 裡加一筆
    cat: visit 校外參訪 | talk 校內演講 | career 職涯面談 | workshop 設計工坊 | show 校內展演 | expo 校外展演
    date: "YYYY-MM-DD"（沒有確定日期就省略，填 dateLabel）
-   status: 可省略（依日期自動判斷）；"closed" = 報名已結束；"tbd" = 待公告；"done" = 已結束
+   status: 可省略（依日期自動判斷）；"closed" = 報名已結束；"tbd" = 待公告；"done" = 已結束；"upcoming" = 即將舉辦（不需報名）
    short: 時間軸上顯示的短名稱
    deadline: 報名截止日 "YYYY-MM-DD"，過了會自動顯示「審查中」
    photos: 活動結束後放照片 [{src:"img/xxx.jpg", cap:"說明"}]
@@ -502,8 +502,12 @@ var EVENTS=[
            {src:"img/visit-1015/v05.jpg", cap:"入場導覽"},
            {src:"img/visit-1015/v06.jpg", cap:"企業分享與交流"},
            {src:"img/visit-1015/v07.jpg", cap:"職場體驗交流合影"}]},
-  {id:"talk-ethan", cat:"talk", title:"業師演講｜Ethan 李翌誠", sub:"日本動畫產業經驗分享", dateLabel:"115-1", status:"done",
-   photos:[{src:"img/talk.jpg", cap:"業師於電腦教室分享"}]},
+  {id:"talk-ethan", cat:"talk", short:"Ethan 李翌誠", title:"業師演講｜Ethan 李翌誠", sub:"日本動畫產業經驗分享", date:"2026-10-07", status:"done",
+   photos:[{src:"img/talk.jpg", cap:"業師於電腦教室分享"},
+           {src:"img/talk-1007/t02.jpg", cap:"同學跟著業師的簡報實作"},
+           {src:"img/talk-1007/t03.jpg", cap:"業師走進座位間與同學交流"}]},
+  {id:"talk-yeh", cat:"talk", short:"葉明軒", title:"業師演講｜金漫獎得主 葉明軒", sub:"時間、地點另行公告", date:"2026-10-29", status:"upcoming", photos:[]},
+  {id:"talk-chiang", cat:"talk", short:"江明諺", title:"業師演講｜玩具設計師 江明諺", sub:"時間、地點另行公告", date:"2026-11-05", status:"upcoming", photos:[]},
   {id:"career-winking", cat:"career", short:"唯晶科技", title:"唯晶科技 孫雨塵 台灣區營運總監", deadline:"2026-10-29", sub:"遊戲產業經營、人才與職涯方向諮詢 · 每人約 10 分鐘 · 10/29 報名截止",
    date:"2026-11-02", time:"11:10–12:00", link:"#career", photos:[]},
   {id:"ws-glow", cat:"workshop", short:"蠟燭手作坊", title:"2026 藝術季｜微光記憶 創意果凍蠟燭手作坊", sub:"弘毅樓 A439 教室 · 免費參加",
@@ -525,6 +529,7 @@ var CATS={visit:{n:"校外參訪",c:"#1f9e89"},talk:{n:"校內演講",c:"#7a5af8
   function state(e){
     if(ended(e)) return {k:"done",t:"已結束"};
     if(e.status==="closed"||(e.deadline&&now>new Date(e.deadline+"T23:59:59+08:00").getTime())) return {k:"closed",t:e.deadline?"審查中":"報名已結束"};
+    if(e.status==="upcoming") return {k:"soon",t:"即將舉辦"};
     if(e.status==="tbd"||!e.date) return {k:"soon",t:"待公告"};
     return {k:"open",t:"報名中"};
   }
