@@ -213,6 +213,7 @@ a.corner:hover{color:var(--hot)}
 .slot{border:1px solid var(--line);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;background:var(--bg)}
 .slot b{font-family:var(--f-mono);font-size:14px;font-variant-numeric:tabular-nums}
 .slot span{font-size:12px;color:var(--muted)}
+.slot span .who{font-family:var(--f-body);font-size:14px;color:var(--hot)}
 .note{font-size:13px;color:var(--muted);margin:0}
 
 /* steps */
@@ -416,7 +417,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <h2>面談時段</h2>
     </div>
     <div class="slots">
-      <div class="slotcol"><h3>11/02 唯晶科技<span>5 個時段</span></h3><div class="slotgrid" data-start="11:10" data-end="12:00"></div></div>
+      <div class="slotcol"><h3>11/02 唯晶科技<span>已排定 4 位</span></h3><div class="slotgrid" data-start="11:10" data-end="11:50" data-names="秦○○ 同學,王○○ 同學,朱○○ 同學,葉○○ 同學"></div></div>
       <div class="slotcol"><h3>11/25 夢想動畫<span>11 個時段</span></h3><div class="slotgrid" data-start="10:10" data-end="12:00"></div></div>
     </div>
     <p class="note">時段不開放自選。通過審查的同學將依報名先後順序排入以上時段，並以電子信箱個別通知，請以通知為準。</p>
@@ -623,8 +624,8 @@ var CATS={visit:{n:"校外參訪",c:"#1f9e89"},talk:{n:"校內演講",c:"#7a5af8
   function mm(s){var p=s.split(":");return +p[0]*60+ +p[1];}
   function fmt(m){return Math.floor(m/60)+":"+String(m%60).padStart(2,"0");}
   document.querySelectorAll(".slotgrid").forEach(function(g){
-    var a=mm(g.dataset.start), b=mm(g.dataset.end), i=1, html="";
-    for(var t=a;t+10<=b;t+=10,i++) html+='<div class="slot"><b>'+fmt(t)+'–'+fmt(t+10)+'</b><span>第 '+i+' 位</span></div>';
+    var a=mm(g.dataset.start), b=mm(g.dataset.end), i=1, html="", names=g.dataset.names?g.dataset.names.split(","):[];
+    for(var t=a;t+10<=b;t+=10,i++) html+='<div class="slot"><b>'+fmt(t)+'–'+fmt(t+10)+'</b><span>'+(names[i-1]?'<b class="who">'+names[i-1]+'</b>':'第 '+i+' 位')+'</span></div>';
     g.innerHTML=html;
   });
 
