@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>設計軟體技法圖鑑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Noto+Sans+TC:wght@300;400;700;900&display=swap">
+<style>
+/* Layout: oversized hero headline + drifting artwork strip → five full-width software rows → filtered card wall */
+:root{
+  --bg:#f3f5f2; --surface:#ffffff; --fg:#141a17; --muted:#5d6862; --line:#d9dfdb;
+  --accent:#0b7a4c;
+  --ai:#ff9a00; --ps:#31a8ff; --id:#ff3366; --ae:#9a8cff; --pr:#c38bff;
+  --display:"Unbounded","Noto Sans TC",system-ui,sans-serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1311; --surface:#161d1a; --fg:#eef2ef; --muted:#9aa69f; --line:#27302c; --accent:#3fd18f; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1311; --surface:#161d1a; --fg:#eef2ef; --muted:#9aa69f; --line:#27302c; --accent:#3fd18f; color-scheme:dark}
+*{box-sizing:border-box}
+img{max-width:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;justify-content:space-between;align-items:center;padding-block:20px}
+.logo{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em}
+.logo span{color:var(--accent)}
+nav.top a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:20px}
+nav.top a:hover{color:var(--fg)}
+.hero{padding-block:48px 28px}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.hero h1{font-family:var(--body);font-weight:900;font-size:clamp(38px,7.2vw,92px);line-height:1.05;margin:14px 0 18px;text-wrap:balance;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:34em;color:var(--muted);font-size:17px;margin:0}
+.strip{overflow:hidden;padding-block:28px 8px;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:14px;width:max-content;animation:drift 40s linear infinite}
+.strip:hover .track{animation-play-state:paused}
+.track img,.track .ph{width:150px;aspect-ratio:421/596;border-radius:10px;object-fit:cover;flex:none}
+.track .ph{border:1.5px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-family:var(--display);font-size:22px}
+@keyframes drift{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}}
+
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-block:56px 18px;border-bottom:1px solid var(--line)}
+.section-h h2{margin:0;font-size:clamp(24px,3.4vw,36px);font-weight:900;text-wrap:balance}
+.section-h small{color:var(--muted);font-size:14px}
+
+.apps{list-style:none;margin:0;padding:0}
+.app{border-bottom:1px solid var(--line)}
+.app a{display:grid;grid-template-columns:minmax(90px,170px) minmax(0,1fr) auto;align-items:center;gap:24px;padding-block:22px;color:inherit;text-decoration:none;position:relative}
+.app .ab{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,84px);line-height:1;color:var(--c);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.app .nm{font-size:clamp(20px,2.4vw,28px);font-weight:700}
+.app .ds{color:var(--muted);font-size:14px;margin-top:2px}
+.app .ct{font-family:var(--display);font-size:13px;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:10px}
+.app .ct b{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);font-weight:500;transition:background .25s,color .25s,border-color .25s}
+.app a:hover .ab,.app a:focus-visible .ab{transform:translateX(10px)}
+.app a:hover .ct b,.app a:focus-visible .ct b{background:var(--c);border-color:var(--c);color:#111}
+.app a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;padding-block:20px}
+.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:6px 14px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;padding-bottom:64px}
+.card{display:flex;flex-direction:column;gap:12px}
+.thumb{position:relative;aspect-ratio:421/596;max-width:100%;border-radius:12px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.card:hover .thumb img{transform:scale(1.04)}
+.tag{position:absolute;top:10px;left:10px;font-family:var(--display);font-size:12px;font-weight:800;padding:4px 8px;border-radius:6px;background:var(--c);color:#111}
+.card h3{margin:0;font-size:18px;font-weight:700;line-height:1.35}
+.card h3 .en{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:2px}
+.steps{margin:0;padding:0;list-style:none;font-size:13px;font-weight:300;color:var(--muted);line-height:1.6}
+.steps li::before{content:"→ ";color:var(--c)}
+.watch{align-self:flex-start;font-size:13px;font-weight:700;color:var(--fg);text-decoration:none;border-bottom:1.5px solid var(--c);padding-bottom:1px}
+.watch:hover{color:var(--accent)}
+.src{font-size:12px;color:var(--muted);margin-top:-6px}
+.soon .thumb{border-style:dashed;display:grid;place-items:center;color:var(--muted);text-align:center;font-size:14px;padding:16px}
+.soon .thumb strong{display:block;font-family:var(--display);font-size:40px;color:var(--c);margin-bottom:6px}
+.empty{grid-column:1/-1;color:var(--muted);padding:40px 0}
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:13px}
+@media (max-width:560px){
+  .app a{grid-template-columns:minmax(0,72px) minmax(0,1fr);gap:16px}
+  .app .ct{display:none}
+  nav.top{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo">SKILL<span>/</span>ATLAS</div>
+    <nav class="top"><a href="#apps">軟體入口</a><a href="#wall">技法卡片牆</a></nav>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">數位多媒體設計 · 實用技法</div>
+    <h1>作品藏<em>技法</em></h1>
+    <p>每張作品就是一道技法題。粗體是技法名稱，細字是步驟暗示，想不出來再點開看完整流程。</p>
+  </section>
+</div>
+
+<div class="strip" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<div class="wrap">
+  <div class="section-h" id="apps"><h2>選擇軟體</h2><small>五大入口</small></div>
+  <ul class="apps" id="appList"></ul>
+
+  <div class="section-h" id="wall"><h2 id="wallTitle">全部技法</h2><small id="wallCount"></small></div>
+  <div class="filters" id="filters" role="group" aria-label="依軟體篩選"></div>
+  <div class="wall" id="grid"></div>
+</div>
+<footer><div class="wrap">原型頁 · 卡片資料可持續擴充 · 作品圖：課堂示範</div></footer>
+
+<script>
+const IMG={brush:"img/brush.jpg",tone:"img/color-halftone.jpg"};
+const APPS=[
+  {id:"ai",ab:"Ai",name:"Illustrator",ds:"向量繪圖、筆刷、圖樣與效果",c:"var(--ai)"},
+  {id:"ps",ab:"Ps",name:"Photoshop",ds:"影像合成、修圖、圖層樣式",c:"var(--ps)"},
+  {id:"id",ab:"Id",name:"InDesign",ds:"編排、樣式、主版頁面",c:"var(--id)"},
+  {id:"ae",ab:"Ae",name:"After Effects",ds:"動態圖像、關鍵影格、表達式",c:"var(--ae)"},
+  {id:"pr",ab:"Pr",name:"Premiere Pro",ds:"剪輯、轉場、調色與字幕",c:"var(--pr)"}
+];
+const SKILLS=[
+  {app:"ai",img:"brush",title:"線條筆刷：在參考線間伸縮",en:"Art Brush · Stretch Between Guides",
+   steps:["畫好鉛筆，拖入筆刷面板","新增線條筆刷","伸縮選項選「在參考線之間伸縮」","筆頭筆尾放到參考線外"]},
+  {app:"ai",img:"tone",title:"彩色網屏 × 漸層透明",en:"Color Halftone · Transparency",
+   steps:["樹形填入黑白漸層","效果 › 像素 › 彩色網屏","透明度面板調整混合模式","複製縮小做出遠近層次"]},
+  {app:"ai",img:"faded",title:"漸變淡出立體字",en:"Faded 3D Text · Blend",
+   steps:["粗體字建立外框，複製一份往後方位移","前層填主色，後層填背景色","漸變選項指定階數 → 物件 › 漸變 › 製作","在前方貼上一份加描邊提亮字面"],
+   video:"https://www.youtube.com/watch?v=sgSxtHDjPYE",note:"圖為示意稿，待替換學生作品"},
+  {app:"ai",img:"wave",title:"立體線條波浪錯視",en:"3D Line Wave · Optical Illusion",
+   steps:["畫上下兩條直線，效果 › 扭曲與變形 › 鋸齒狀（平滑）","擴充外觀，兩條線各給不同顏色","漸變選項指定階數 → 物件 › 漸變 › 製作","封套扒曲 › 以彩虹製作，選膨脹或魚眼做出突起"],
+   video:"https://www.youtube.com/watch?v=uihh-HzDw7M",note:"圖為示意稿，待替換學生作品"}
+];
+IMG.faded=(()=>{const bg=[32,38,74],fg=[255,201,77];const mix=t=>"rgb("+fg.map((v,k)=>Math.round(v+(bg[k]-v)*t)).join(",")+")";
+  let s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 421 596"><rect width="421" height="596" fill="rgb(32,38,74)"/><text x="18" y="42" font-family="Helvetica,Arial,sans-serif" font-size="26" fill="#fff">Adobe Illustrator</text>';
+  const n=46;for(let i=n;i>=0;i--){s+=`<text x="${(78-i*2.4).toFixed(1)}" y="${(330+i*3.6).toFixed(1)}" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="200" fill="${mix(i/n)}">Ai</text>`}
+  s+='<text x="78" y="330" font-family="Arial Black,Arial,Helvetica,sans-serif" font-weight="900" font-size="200" fill="none" stroke="#fff" stroke-width="2">Ai</text><text x="300" y="548" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#fff">blend</text><text x="300" y="568" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#fff">faded 3D text</text></svg>';
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(s)})();
+IMG.wave=(()=>{let s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 421 596"><rect width="421" height="596" fill="#0d0d14"/><text x="18" y="42" font-family="Helvetica,Arial,sans-serif" font-size="26" fill="#fff">Adobe Illustrator</text>';
+  const n=56,a=[0,214,255],b=[255,60,172];
+  for(let i=0;i<=n;i++){const t=i/n,y0=110+t*390;let d='';
+    for(let x=0;x<=421;x+=6){const dx=(x-210)/120,dy=(y0-305)/140,bulge=Math.exp(-(dx*dx+dy*dy));
+      const y=y0+Math.sin(x/34+t*5.5)*14*(0.35+bulge)-bulge*38*Math.sign(dy||1)*Math.abs(dy);d+=(x?'L':'M')+x+' '+y.toFixed(1)}
+    const c='rgb('+a.map((v,k)=>Math.round(v+(b[k]-v)*t)).join(',')+')';
+    s+=`<path d="${d}" fill="none" stroke="${c}" stroke-width="1.6"/>`}
+  s+='<text x="300" y="548" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#fff">blend</text><text x="300" y="568" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#fff">3D line wave</text></svg>';
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(s)})();
+const appOf=id=>APPS.find(a=>a.id===id);
+const count=id=>SKILLS.filter(s=>s.app===id).length;
+
+document.getElementById("track").innerHTML=[0,1].map(()=>
+  [IMG.brush,"Ps",IMG.faded,"Id",IMG.wave,"Ae",IMG.tone,"Pr",IMG.faded,IMG.wave].map(x=>x.length>2?`<img src="${x}" alt="">`:`<div class="ph">${x}</div>`).join("")).join("");
+
+document.getElementById("appList").innerHTML=APPS.map(a=>`
+  <li class="app" style="--c:${a.c}"><a href="#${a.id}">
+    <span class="ab">${a.ab}</span>
+    <span><div class="nm">${a.name}</div><div class="ds">${a.ds}</div></span>
+    <span class="ct">${count(a.id)} 個技法 <b>→</b></span>
+  </a></li>`).join("");
+
+const filters=document.getElementById("filters");
+function renderFilters(cur){
+  filters.innerHTML=[{id:"all",ab:"全部"},...APPS].map(a=>
+    `<button class="chip" id="f-${a.id}" data-id="${a.id}" aria-pressed="${a.id===cur}">${a.id==="all"?"全部":a.ab+" "+a.name}</button>`).join("");
+}
+filters.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
+  const id=b.dataset.id; history.replaceState(null,"",id==="all"?"#wall":"#"+id); render(id)});
+
+function render(cur){
+  renderFilters(cur);
+  const list=cur==="all"?SKILLS:SKILLS.filter(s=>s.app===cur);
+  const a=appOf(cur);
+  document.getElementById("wallTitle").textContent=a?`${a.name} 技法`:"全部技法";
+  document.getElementById("wallCount").textContent=`${list.length} 張卡片`;
+  let html=list.map(s=>{const ap=appOf(s.app);return `
+    <article class="card" style="--c:${ap.c}">
+      <div class="thumb"><img src="${IMG[s.img]}" alt="${s.title} 示範作品"><span class="tag">${ap.ab}</span></div>
+      <h3>${s.title}<span class="en">${s.en}</span></h3>
+      <ul class="steps">${s.steps.map(t=>`<li>${t}</li>`).join("")}</ul>
+      ${s.video?`<a class="watch" href="${s.video}" target="_blank" rel="noopener">卡關了？看完整教學 →</a>`:""}
+      ${s.note?`<div class="src">${s.note}</div>`:""}
+    </article>`}).join("");
+  const pending=(a?[a]:APPS).filter(x=>count(x.id)===0);
+  html+=pending.map(x=>`<article class="card soon" style="--c:${x.c}"><div class="thumb"><div><strong>${x.ab}</strong>${x.name} 技法作品<br>即將上架</div></div></article>`).join("");
+  document.getElementById("grid").innerHTML=html;
+}
+function route(){
+  const h=location.hash.slice(1);
+  if(appOf(h)){render(h);document.getElementById("wall").scrollIntoView({behavior:"smooth"});}
+  else render("all");
+}
+addEventListener("hashchange",route); route();
+</script>
+
+</body>
+</html>
