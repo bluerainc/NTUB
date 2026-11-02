@@ -213,6 +213,7 @@ a.corner:hover{color:var(--hot)}
 .slot{border:1px solid var(--line);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;background:var(--bg)}
 .slot b{font-family:var(--f-mono);font-size:14px;font-variant-numeric:tabular-nums}
 .slot span{font-size:12px;color:var(--muted)}
+.slot span .who{font-family:var(--f-body);font-size:14px;color:var(--accent)}
 .note{font-size:13px;color:var(--muted);margin:0}
 
 /* steps */
@@ -376,7 +377,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <article class="mentor">
         <div class="slate">
           <div class="day"><strong>11/02</strong><span>MON</span></div>
-          <div class="time"><span class="mono">11:10 – 12:00</span><small>北商大 · 數媒系 · 每人約 10 分鐘</small><small class="dl">報名截止 10/29（四）</small><span class="countdown" data-until="2026-11-02T11:10:00+08:00"></span></div>
+          <div class="time"><span class="mono">11:10 – 12:00</span><small>425 研究室 · 每人約 10 分鐘</small><small class="dl">報名截止 10/29（四）</small><span class="countdown" data-until="2026-11-02T11:10:00+08:00"></span></div>
         </div>
         <div class="m-body">
           <span class="m-co">唯晶科技 Winking Studios</span>
@@ -394,7 +395,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <article class="mentor">
         <div class="slate">
           <div class="day"><strong>11/25</strong><span>WED</span></div>
-          <div class="time"><span class="mono">10:10 – 12:00</span><small>北商大 · 數媒系 · 每人約 10 分鐘</small><small class="dl">報名截止 11/19（四）</small><span class="countdown" data-until="2026-11-25T10:10:00+08:00"></span></div>
+          <div class="time"><span class="mono">10:10 – 12:00</span><small>425 研究室 · 每人約 10 分鐘</small><small class="dl">報名截止 11/19（四）</small><span class="countdown" data-until="2026-11-25T10:10:00+08:00"></span></div>
         </div>
         <div class="m-body">
           <span class="m-co">夢想動畫 MoonShine Studio</span>
@@ -416,7 +417,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font
       <h2>面談時段</h2>
     </div>
     <div class="slots">
-      <div class="slotcol"><h3>11/02 唯晶科技<span>5 個時段</span></h3><div class="slotgrid" data-start="11:10" data-end="12:00"></div></div>
+      <div class="slotcol"><h3>11/02 唯晶科技<span>已排定 4 位</span></h3><div class="slotgrid" data-start="11:10" data-end="11:50" data-names="1124C004 秦○○,1124C034 王○○,1124C039 朱○○,1124C011 葉○○"></div></div>
       <div class="slotcol"><h3>11/25 夢想動畫<span>11 個時段</span></h3><div class="slotgrid" data-start="10:10" data-end="12:00"></div></div>
     </div>
     <p class="note">時段不開放自選。通過審查的同學將依報名先後順序排入以上時段，並以電子信箱個別通知，請以通知為準。</p>
@@ -502,20 +503,33 @@ var EVENTS=[
            {src:"img/visit-1015/v05.jpg", cap:"入場導覽"},
            {src:"img/visit-1015/v06.jpg", cap:"企業分享與交流"},
            {src:"img/visit-1015/v07.jpg", cap:"職場體驗交流合影"}]},
+  {id:"talk-lin", cat:"talk", short:"林妤", title:"業師演講｜文學轉譯老師 林妤", sub:"到班指導：將文學腳本轉譯為影片創作", date:"2026-09-23", status:"done",
+   photos:[{src:"img/talk-0923/l01.jpg", cap:"林妤老師到班指導文學轉譯影片創作"}]},
   {id:"talk-ethan", cat:"talk", short:"Ethan 李翌誠", title:"業師演講｜Ethan 李翌誠", sub:"日本動畫產業經驗分享", date:"2026-10-07", status:"done",
    photos:[{src:"img/talk.jpg", cap:"業師於電腦教室分享"},
            {src:"img/talk-1007/t02.jpg", cap:"同學跟著業師的簡報實作"},
            {src:"img/talk-1007/t03.jpg", cap:"業師走進座位間與同學交流"}]},
   {id:"talk-hu", cat:"talk", short:"胡宏愈", title:"業師演講｜夢想動畫 動畫總監 胡宏愈", sub:"動畫產業與製作經驗分享", date:"2026-10-21", status:"done",
    photos:[{src:"img/talk-1021/h01.jpg", cap:"胡宏愈總監於電腦教室分享動畫製作經驗"},
-           {src:"img/talk-1021/h02.jpg", cap:"課後同學圍著總監交流"}]},
-  {id:"talk-yeh", cat:"talk", short:"葉明軒", title:"業師演講｜金漫獎得主 葉明軒", sub:"時間、地點另行公告", date:"2026-10-29", status:"upcoming", photos:[]},
+           {src:"img/talk-1021/h02.jpg", cap:"課後同學圍著總監交流"},
+           {src:"img/talk-1021/h03.jpg", cap:"胡宏愈總監與同學交流作品"}]},
+  {id:"talk-yeh", cat:"talk", short:"葉明軒", title:"業師演講｜金漫獎得主 葉明軒", sub:"金漫獎得主到校分享", date:"2026-10-29", status:"done",
+   photos:[{src:"img/talk-1029/y01.jpg", cap:"葉明軒老師分享漫畫創作"},
+           {src:"img/talk-1029/y02.jpg", cap:"同學專心聆聽演講"},
+           {src:"img/talk-1029/y03.jpg", cap:"演講現場"},
+           {src:"img/talk-1029/y04.jpg", cap:"同學螢幕上的演講簡報"}]},
   {id:"talk-chiang", cat:"talk", short:"江明諺", title:"業師演講｜玩具設計師 江明諺", sub:"時間、地點另行公告", date:"2026-11-05", status:"upcoming", photos:[]},
-  {id:"career-winking", cat:"career", short:"唯晶科技", title:"唯晶科技 孫雨塵 台灣區營運總監", deadline:"2026-10-29", sub:"遊戲產業經營、人才與職涯方向諮詢 · 每人約 10 分鐘 · 10/29 報名截止",
-   date:"2026-11-02", time:"11:10–12:00", link:"#career", photos:[]},
+  {id:"career-winking", cat:"career", short:"唯晶科技", title:"唯晶科技 孫雨塵 台灣區營運總監", deadline:"2026-10-29", sub:"425 研究室 · 遊戲產業經營、人才與職涯方向諮詢 · 每人約 10 分鐘 · 10/29 報名截止",
+   date:"2026-11-02", time:"11:10–12:00", link:"#career", status:"done",
+   photos:[{src:"img/career-1102/c05.jpg", cap:"孫雨塵總監分享遊戲產業經驗"},
+           {src:"img/career-1102/c01.jpg", cap:"一對一面談，總監看同學作品"},
+           {src:"img/career-1102/c02.jpg", cap:"面談簡報"},
+           {src:"img/career-1102/c03.jpg", cap:"同學與總監交流"},
+           {src:"img/career-1102/c04.jpg", cap:"面談現場"},
+           {src:"img/career-1102/c06.jpg", cap:"同學聆聽總監分享"}]},
   {id:"ws-glow", cat:"workshop", short:"蠟燭手作坊", title:"2026 藝術季｜微光記憶 創意果凍蠟燭手作坊", sub:"弘毅樓 A439 教室 · 免費參加",
    date:"2026-11-02", time:"16:30–19:30", status:"closed", link:"../ntub-studio/art-season/glow/index.html", photos:[]},
-  {id:"career-moonshine", cat:"career", short:"夢想動畫", title:"夢想動畫 李走狗 CEO", deadline:"2026-11-19", sub:"動畫、視覺特效與影視製作職涯諮詢 · 每人約 10 分鐘 · 11/19 報名截止",
+  {id:"career-moonshine", cat:"career", short:"夢想動畫", title:"夢想動畫 李走狗 CEO", deadline:"2026-11-19", sub:"425 研究室 · 動畫、視覺特效與影視製作職涯諮詢 · 每人約 10 分鐘 · 11/19 報名截止",
    date:"2026-11-25", time:"10:10–12:00", link:"#career", photos:[]}
 ];
 var CATS={visit:{n:"校外參訪",c:"#1f9e89"},talk:{n:"校內演講",c:"#7a5af8"},career:{n:"職涯面談",c:"#ff5a36"},
@@ -623,8 +637,8 @@ var CATS={visit:{n:"校外參訪",c:"#1f9e89"},talk:{n:"校內演講",c:"#7a5af8
   function mm(s){var p=s.split(":");return +p[0]*60+ +p[1];}
   function fmt(m){return Math.floor(m/60)+":"+String(m%60).padStart(2,"0");}
   document.querySelectorAll(".slotgrid").forEach(function(g){
-    var a=mm(g.dataset.start), b=mm(g.dataset.end), i=1, html="";
-    for(var t=a;t+10<=b;t+=10,i++) html+='<div class="slot"><b>'+fmt(t)+'–'+fmt(t+10)+'</b><span>第 '+i+' 位</span></div>';
+    var a=mm(g.dataset.start), b=mm(g.dataset.end), i=1, html="", names=g.dataset.names?g.dataset.names.split(","):[];
+    for(var t=a;t+10<=b;t+=10,i++) html+='<div class="slot"><b>'+fmt(t)+'–'+fmt(t+10)+'</b><span>'+(names[i-1]?'<b class="who">'+names[i-1]+'</b>':'第 '+i+' 位')+'</span></div>';
     g.innerHTML=html;
   });
 
