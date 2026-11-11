@@ -83,13 +83,13 @@
     shown.forEach(function (t) { var L = letterOf(t); if (!groups[L]) { groups[L] = []; order.push(L); } groups[L].push(t); });
     var html = '';
     order.forEach(function (L) {
-      html += '<div class="' + lc(L) + '"><h3 class="section-letter" id="sec-' + (L === '0–9' ? 'num' : L) + '"><span class="blob">' + L + '</span></h3>';
+      html += '<div class="' + lc(L) + '"><h3 class="section-letter" id="sec-' + (L === '0–9' ? 'num' : L) + '"><span class="blob' + (L === '0–9' ? ' num' : '') + '">' + L + '</span></h3>';
       groups[L].forEach(function (t) {
         var d0 = state.dept || t.depts[0];
         html += '<article class="entry" style="--d:' + cvar(d0) + '"><p class="idx mono">' + t.no + '</p>' +
           '<div class="main"><div class="hw"><h4 class="en">' + hi(t.en, state.q) + '</h4>' +
           (t.abbr ? '<span class="abbr">' + hi(t.abbr, state.q) + '</span>' : '') + '</div>' +
-          '<p class="zh">' + hi(t.zh, state.q) + '</p><p class="ex">' + hi(t.ex, state.q) + '</p></div>' +
+          '<p class="zh"><span class="br">〔</span>' + hi(t.zh, state.q) + '<span class="br">〕</span></p><p class="ex">' + hi(t.ex, state.q) + '</p></div>' +
           '<aside class="margin"><span class="lbl mono">系別</span>' +
           '<div class="tags">' + t.depts.map(function (d) { return '<span class="tag t-' + d + '">' + LABEL[d] + '</span>'; }).join('') + '</div>' +
           '<a href="' + esc(t.link) + '" target="_blank" rel="noopener">樂詞網查詢 ↗</a>' +
