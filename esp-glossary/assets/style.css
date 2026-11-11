@@ -105,7 +105,7 @@ body.show-grid .grid-overlay{display:block}
 .entry{--d:var(--accent);display:grid;grid-template-columns:48px minmax(0,7fr) minmax(0,3fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--rule)}
 .idx{color:var(--lc,var(--muted));margin:8px 0 0}
 .hw{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
-.en{font-weight:600;font-size:clamp(22px,2.6vw,28px);line-height:1.2;letter-spacing:-.02em;margin:0}
+.en{color:var(--lc,var(--ink));font-weight:600;font-size:clamp(22px,2.6vw,28px);line-height:1.2;letter-spacing:-.02em;margin:0}
 .abbr{font-style:normal;border:1.5px solid var(--ink);border-radius:999px;padding:0 10px;line-height:1.7;font-weight:600}
 .zh{font-family:var(--zh-serif);font-weight:600;font-size:18px;margin:6px 0 6px}
 .ex{font-family:var(--zh);margin:0;max-width:44em}
@@ -154,8 +154,8 @@ mark{background:#f0d98c;color:#2b2b2b;padding:0 1px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{.topbar,.tools,.hero-row,.grid-overlay,.hero-art{display:none}.entry{break-inside:avoid}}
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .letters a,:root:not([data-theme="light"]) .idx{color:var(--ink)}
+  :root:not([data-theme="light"]) .letters a,:root:not([data-theme="light"]) .idx,:root:not([data-theme="light"]) .en{color:var(--ink)}
   :root:not([data-theme="light"]) .note-c{color:#e7a07c}
 }
-:root[data-theme="dark"] .letters a,:root[data-theme="dark"] .idx{color:var(--ink)}
+:root[data-theme="dark"] .letters a,:root[data-theme="dark"] .idx,:root[data-theme="dark"] .en{color:var(--ink)}
 :root[data-theme="dark"] .note-c{color:#e7a07c}
