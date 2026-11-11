@@ -47,7 +47,7 @@ body.show-grid .grid-overlay{display:block}
 
 /* hero */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule);background:#fbf2e5}
-.hero-img{display:block;width:100%;height:clamp(520px,62vw,820px);object-fit:cover;object-position:right bottom}
+.hero-img{display:block;width:100%;height:clamp(480px,50vw,720px);object-fit:cover;object-position:right bottom}
 .hero-text{position:absolute;inset:0;padding-top:clamp(40px,6vw,88px);pointer-events:none}
 .hero-text>*{pointer-events:auto;max-width:min(560px,46%)}
 .meta{color:#5a5650;margin:0 0 20px}
