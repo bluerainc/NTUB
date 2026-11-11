@@ -97,6 +97,6 @@
     }).join('');
   }
 
-  document.getElementById('total').textContent = terms.length;
+  var tot = document.getElementById('total'); if (tot) tot.textContent = terms.length;
   render();
 })();
