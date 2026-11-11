@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESP 專業英文詞彙｜北商創新設計與經營學院</title>
+<meta name="description" content="國立臺北商業大學創新設計與經營學院 ESP（專業英文）詞彙 200 條：英文、縮寫、中文譯名與解釋，可搜尋、依系別篩選。">
+<meta name="theme-color" content="#f4f4f0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#glossary">跳到詞彙</a>
+<div class="grid-overlay" aria-hidden="true"><div class="wrap"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="./">ESP Glossary <span>/ 北商創新設計與經營學院</span></a>
+    <nav class="nav" aria-label="主要導覽">
+      <a href="#about"><b>01</b> 說明</a>
+      <a href="#glossary"><b>02</b> 詞彙</a>
+      <a href="#depts"><b>03</b> 系別</a>
+      <a href="#print"><b>04</b> 印刷版</a>
+    </nav>
+    <button class="kbd-btn" type="button" id="openSearch" aria-label="搜尋詞彙（快捷鍵 / 或 ⌘K）"><span>搜尋</span><kbd>⌘K</kbd></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <p class="meta mono">National Taipei University of Business · College of Innovative Design and Management</p>
+    <h1>Design, <em>in English.</em></h1>
+    <p class="hero-sub">創新設計與經營學院各系專業英文詞彙 <b id="total">200</b> 條——英文、縮寫、中文譯名、解釋，一頁查完。</p>
+    <div class="hero-row">
+      <a class="cta" href="#glossary">開始查詢 →</a>
+      <a class="cta ghost" href="#print">下載印刷版 ↓</a>
+      <p class="mono note">fig. 00 · 譯名參考 terms.naer.edu.tw</p>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="about">
+    <p class="sect-no mono">[01]</p>
+    <div class="sect-body">
+      <h2>一條詞，<em>兩欄讀。</em></h2>
+      <p class="lead">每個詞條分成左右兩欄：左欄是英文、縮寫、中文與解釋；右欄是「眉批」，標示提出的系別，並連到國家教育研究院樂詞網核對譯名。視線往右，就能對照。</p>
+      <figure class="specimen">
+        <div class="entry demo">
+          <p class="idx mono">186</p>
+          <div class="main">
+            <div class="hw"><h3 class="en">user experience</h3><span class="abbr mono">UX</span></div>
+            <p class="zh">使用者經驗；使用者體驗</p>
+            <p class="ex">使用者在使用數位產品、系統或服務過程中感受到的全方位心理體驗。</p>
+          </div>
+          <aside class="margin"><span class="lbl mono">系別</span><div class="tags"><span class="tag">數媒</span></div><span class="lnk">樂詞網查詢 ↗</span></aside>
+        </div>
+        <figcaption class="mono">fig. 01 · 左欄＝詞條　右欄＝眉批（系別・出處・提醒）</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="glossary">
+    <p class="sect-no mono">[02]</p>
+    <div class="sect-body">
+      <h2>詞彙 <em>A–Z</em></h2>
+      <div class="tools" id="tools">
+        <label class="search">
+          <span class="mono">$</span>
+          <span class="visually-hidden">搜尋詞彙</span>
+          <input id="q" type="search" placeholder="search — 英文、中文或縮寫，例如 UX、透視、molding" autocomplete="off">
+          <kbd class="mono">/</kbd>
+        </label>
+        <div class="chips" id="chips" role="group" aria-label="依系別篩選"></div>
+        <nav class="letters mono" id="letters" aria-label="字母索引"></nav>
+      </div>
+      <p class="count mono" id="count" aria-live="polite"></p>
+      <div id="list"></div>
+      <p class="empty" id="empty" hidden>找不到符合的詞彙，換個關鍵字或清除篩選試試。</p>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="depts">
+    <p class="sect-no mono">[03]</p>
+    <div class="sect-body">
+      <h2>五個來源，<em>一本詞典。</em></h2>
+      <ol class="dept-list" id="deptList"></ol>
+      <p class="mono note">同一詞彙由多系提出時只收一條，並標示所有系別，因此各系條數加總會超過 200。</p>
+    </div>
+  </section>
+
+  <section class="sect wrap" id="print">
+    <p class="sect-no mono">[04]</p>
+    <div class="sect-body">
+      <h2>放進口袋的 <em>版本。</em></h2>
+      <p class="lead">A5 印刷版，48 頁，含目錄、縮寫索引與系別索引，可直接送印或課堂發放。</p>
+      <a class="cta big" href="downloads/北商創新設計與經營學院_ESP專業英文詞彙_A5.pdf" download>下載 PDF（A5） ↓</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="mono">© 國立臺北商業大學 創新設計與經營學院 · ESP Glossary · 2026</p>
+    <p class="mono">中文譯名參考國家教育研究院「樂詞網」；解釋由各系撰寫 · <kbd>⌥G</kbd> 顯示格線</p>
+  </div>
+</footer>
+
+<script src="assets/terms.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
