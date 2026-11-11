@@ -89,7 +89,7 @@
         html += '<article class="entry" style="--d:' + cvar(d0) + '"><p class="idx mono">' + t.no + '</p>' +
           '<div class="main"><div class="hw"><h4 class="en">' + hi(t.en, state.q) + '</h4>' +
           (t.abbr ? '<span class="abbr">' + hi(t.abbr, state.q) + '</span>' : '') + '</div>' +
-          '<p class="zh"><span class="br">〔</span>' + hi(t.zh, state.q) + '<span class="br">〕</span></p><p class="ex">' + hi(t.ex, state.q) + '</p></div>' +
+          '<p class="zh"><span class="br">[</span>' + hi(t.zh, state.q) + '<span class="br">]</span></p><p class="ex">' + hi(t.ex, state.q) + '</p></div>' +
           '<aside class="margin"><span class="lbl mono">系別</span>' +
           '<div class="tags">' + t.depts.map(function (d) { return '<span class="tag t-' + d + '">' + LABEL[d] + '</span>'; }).join('') + '</div>' +
           '<a href="' + esc(t.link) + '" target="_blank" rel="noopener">樂詞網查詢 ↗</a>' +
